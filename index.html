@@ -3,372 +3,671 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Nexus AI – Pioneering the frontier of artificial intelligence with machine learning, computer vision, and generative AI solutions." />
-  <meta name="theme-color" content="#040B1C" />
+  <meta name="description" content="Nexus AI – Pioneering the future of artificial intelligence with machine learning, robotics, predictive analytics, and intelligent automation solutions for global enterprises." />
+  <meta name="keywords" content="Artificial Intelligence, Machine Learning, Robotics, AI Solutions, Predictive Analytics, NLP, Computer Vision, Automation" />
+  <meta name="author" content="Nexus AI" />
+  <meta property="og:title" content="Nexus AI – The Future of Artificial Intelligence" />
+  <meta property="og:description" content="Pioneering next-generation AI systems that redefine what machines can understand, decide, and create." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nexusai.io" />
+  <meta property="og:image" content="assets/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Nexus AI – The Future of Artificial Intelligence" />
+  <meta name="twitter:description" content="Pioneering next-generation AI systems that redefine what machines can understand, decide, and create." />
   <title>Nexus AI – The Future of Artificial Intelligence</title>
-
-  <!-- Preconnect for fonts -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Skip to content (accessibility) -->
-  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <!-- Page Loader -->
+  <div class="page-loader" id="pageLoader" aria-hidden="true">
+    <div class="loader-content">
+      <div class="loader-logo">N<span>X</span></div>
+      <div class="loader-bar"><div class="loader-fill"></div></div>
+      <p class="loader-text">Initializing Nexus AI...</p>
+    </div>
+  </div>
 
-  <!-- ─────────────────────────── NAVIGATION ─────────────────────────── -->
-  <header class="site-header" id="site-header" role="banner">
-    <nav class="nav-container" role="navigation" aria-label="Primary navigation">
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar" role="banner">
+    <nav class="nav-inner" aria-label="Main navigation">
       <a href="#home" class="nav-logo" aria-label="Nexus AI – Home">
-        <span class="logo-icon" aria-hidden="true">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" stroke="url(#logoGrad)" stroke-width="1.5" fill="none"/>
-            <circle cx="16" cy="16" r="4" fill="url(#logoGrad)"/>
-            <path d="M16 6V12M16 20V26M6 11L11 14M21 18L26 21M6 21L11 18M21 14L26 11" stroke="url(#logoGrad)" stroke-width="1" stroke-linecap="round"/>
-            <defs>
-              <linearGradient id="logoGrad" x1="4" y1="2" x2="28" y2="30" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#4F46E5"/>
-                <stop offset="1" stop-color="#06B6D4"/>
-              </linearGradient>
-            </defs>
-          </svg>
-        </span>
-        <span class="logo-text">Nexus<span class="logo-accent">AI</span></span>
+        <span class="logo-icon">NX</span>
+        <span class="logo-text">Nexus<em>AI</em></span>
       </a>
-
-      <ul class="nav-links" role="list" id="nav-links">
-        <li><a href="#home" class="nav-link active">Home</a></li>
-        <li><a href="#solutions" class="nav-link">AI Solutions</a></li>
-        <li><a href="#robotics" class="nav-link">Robotics</a></li>
-        <li><a href="#blog" class="nav-link">Blog</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+        <li><a href="#solutions" class="nav-link" data-section="solutions">AI Solutions</a></li>
+        <li><a href="#robotics" class="nav-link" data-section="robotics">Robotics</a></li>
+        <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+        <li><a href="#stats" class="nav-link" data-section="stats">Statistics</a></li>
+        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
       </ul>
-
-      <div class="nav-actions">
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="true">
-          <span class="theme-icon sun" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-          </span>
-          <span class="theme-icon moon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-          </span>
-        </button>
-        <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="nav-links">
-          <span class="ham-bar"></span>
-          <span class="ham-bar"></span>
-          <span class="ham-bar"></span>
-        </button>
-      </div>
+      <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
   </header>
 
-  <main id="main-content">
+  <main>
 
-    <!-- ─────────────────────────── HERO ─────────────────────────── -->
-    <section class="hero" id="home" aria-label="Hero section">
-      <canvas class="star-canvas" id="starCanvas" aria-hidden="true"></canvas>
-      <div class="hero-glow hero-glow-1" aria-hidden="true"></div>
-      <div class="hero-glow hero-glow-2" aria-hidden="true"></div>
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="home" aria-labelledby="heroHeading">
+      <canvas class="starfield" id="starfield" aria-hidden="true"></canvas>
+      <div class="hero-glow hero-glow--1" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow--2" aria-hidden="true"></div>
 
-      <div class="hero-content">
-        <div class="hero-eyebrow reveal-fade">
-          <span class="pulse-dot" aria-hidden="true"></span>
-          General Intelligence Research — 2025
-        </div>
-
-        <h1 class="hero-headline">
-          <span class="line-reveal">The Future of</span>
-          <span class="line-reveal delay-1">
-            <span class="gradient-text" id="typed-text" aria-live="polite"></span>
-            <span class="cursor-blink" aria-hidden="true">|</span>
-          </span>
-        </h1>
-
-        <p class="hero-subtext reveal-fade delay-2">
-          We build AI systems that perceive, reason, and act — from large language models to embodied robotics. Pushing the boundary of what machines can understand.
-        </p>
-
-        <div class="hero-actions reveal-fade delay-3">
-          <a href="#solutions" class="btn btn-primary">
-            Explore Solutions
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="#portfolio" class="btn btn-ghost">Learn More</a>
-        </div>
-
-        <div class="hero-stats reveal-fade delay-4" role="list" aria-label="Key statistics">
-          <div class="hero-stat" role="listitem">
-            <span class="stat-num">50+</span>
-            <span class="stat-label">AI Projects</span>
+      <div class="hero-inner">
+        <div class="hero-content" data-reveal>
+          <div class="hero-eyebrow">
+            <span class="eyebrow-dot"></span>
+            Next-Generation Intelligence
           </div>
-          <div class="stat-divider" aria-hidden="true"></div>
-          <div class="hero-stat" role="listitem">
-            <span class="stat-num">10K+</span>
-            <span class="stat-label">Users Worldwide</span>
-          </div>
-          <div class="stat-divider" aria-hidden="true"></div>
-          <div class="hero-stat" role="listitem">
-            <span class="stat-num">99%</span>
-            <span class="stat-label">Accuracy Rate</span>
+          <h1 class="hero-headline" id="heroHeading">
+            The Future of<br />
+            <span class="headline-gradient">Artificial Intelligence</span><br />
+            Starts Here
+          </h1>
+          <p class="hero-sub">
+            We build <span class="typing-text" id="typingText" aria-live="polite">Artificial Intelligence</span> systems
+            that redefine what machines can understand, decide, and create — powering the enterprises of tomorrow.
+          </p>
+          <div class="hero-buttons">
+            <a href="#solutions" class="btn btn--primary">
+              Explore Solutions
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <button class="btn btn--ghost" onclick="openDemoModal()">
+              <span class="play-icon" aria-hidden="true">▶</span>
+              Watch Demo
+            </button>
           </div>
         </div>
+
+        <figure class="hero-illustration" aria-label="Nexus AI humanoid head illustration">
+          <div class="ai-head-wrap">
+            <svg class="ai-head" viewBox="0 0 360 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Futuristic AI head">
+              <defs>
+                <radialGradient id="headGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#7C4DFF" stop-opacity="0.4"/>
+                  <stop offset="100%" stop-color="#050816" stop-opacity="0"/>
+                </radialGradient>
+                <linearGradient id="headBody" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#1a1040"/>
+                  <stop offset="100%" stop-color="#0a0020"/>
+                </linearGradient>
+                <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#00E5FF"/>
+                  <stop offset="100%" stop-color="#7C4DFF"/>
+                </linearGradient>
+                <filter id="glow">
+                  <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                  <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <filter id="strongGlow">
+                  <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+                  <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+              <!-- Background glow -->
+              <ellipse cx="180" cy="220" rx="160" ry="200" fill="url(#headGlow)"/>
+              <!-- Neck/base -->
+              <rect x="150" y="350" width="60" height="70" rx="8" fill="url(#headBody)" stroke="#7C4DFF" stroke-width="1" opacity="0.9"/>
+              <!-- Neck circuits -->
+              <line x1="165" y1="355" x2="165" y2="415" stroke="#00E5FF" stroke-width="0.8" opacity="0.6" filter="url(#glow)"/>
+              <line x1="180" y1="355" x2="180" y2="415" stroke="#7C4DFF" stroke-width="0.8" opacity="0.6" filter="url(#glow)"/>
+              <line x1="195" y1="355" x2="195" y2="415" stroke="#00E5FF" stroke-width="0.8" opacity="0.6" filter="url(#glow)"/>
+              <!-- Main head shape -->
+              <path d="M90,200 Q85,120 180,90 Q275,120 270,200 Q275,300 180,340 Q85,300 90,200Z" fill="url(#headBody)" stroke="#7C4DFF" stroke-width="1.5"/>
+              <!-- Head panel lines -->
+              <path d="M90,200 Q85,120 180,90" stroke="#7C4DFF" stroke-width="0.5" fill="none" opacity="0.4"/>
+              <path d="M270,200 Q275,120 180,90" stroke="#7C4DFF" stroke-width="0.5" fill="none" opacity="0.4"/>
+              <!-- Forehead panel -->
+              <path d="M130,95 Q180,75 230,95 L225,135 Q180,115 135,135Z" fill="#0d0025" stroke="#7C4DFF" stroke-width="0.8" opacity="0.8"/>
+              <!-- Forehead circuit lines -->
+              <line x1="155" y1="98" x2="145" y2="130" stroke="#00E5FF" stroke-width="0.8" opacity="0.7" filter="url(#glow)"/>
+              <line x1="170" y1="92" x2="165" y2="125" stroke="#7C4DFF" stroke-width="0.8" opacity="0.7" filter="url(#glow)"/>
+              <line x1="180" y1="90" x2="180" y2="122" stroke="#00E5FF" stroke-width="1" opacity="0.9" filter="url(#glow)"/>
+              <line x1="190" y1="92" x2="195" y2="125" stroke="#7C4DFF" stroke-width="0.8" opacity="0.7" filter="url(#glow)"/>
+              <line x1="205" y1="98" x2="215" y2="130" stroke="#00E5FF" stroke-width="0.8" opacity="0.7" filter="url(#glow)"/>
+              <!-- LEFT EYE area -->
+              <rect x="105" y="165" width="65" height="35" rx="6" fill="#050816" stroke="#00E5FF" stroke-width="1.5" filter="url(#glow)"/>
+              <!-- Left eye iris -->
+              <ellipse cx="137" cy="182" rx="20" ry="12" fill="#0a0a2a" stroke="#00E5FF" stroke-width="1"/>
+              <ellipse cx="137" cy="182" rx="12" ry="7" fill="#001520" stroke="#00E5FF" stroke-width="1.2" filter="url(#strongGlow)"/>
+              <ellipse cx="137" cy="182" rx="5" ry="5" fill="#00E5FF" opacity="0.9" filter="url(#strongGlow)"/>
+              <ellipse cx="137" cy="182" rx="2" ry="2" fill="#ffffff"/>
+              <!-- Eye scan line (animated) -->
+              <line x1="107" y1="182" x2="168" y2="182" stroke="#00E5FF" stroke-width="0.6" opacity="0.5" class="scan-line"/>
+              <!-- RIGHT EYE area -->
+              <rect x="190" y="165" width="65" height="35" rx="6" fill="#050816" stroke="#00E5FF" stroke-width="1.5" filter="url(#glow)"/>
+              <!-- Right eye iris -->
+              <ellipse cx="222" cy="182" rx="20" ry="12" fill="#0a0a2a" stroke="#00E5FF" stroke-width="1"/>
+              <ellipse cx="222" cy="182" rx="12" ry="7" fill="#001520" stroke="#00E5FF" stroke-width="1.2" filter="url(#strongGlow)"/>
+              <ellipse cx="222" cy="182" rx="5" ry="5" fill="#00E5FF" opacity="0.9" filter="url(#strongGlow)"/>
+              <ellipse cx="222" cy="182" rx="2" ry="2" fill="#ffffff"/>
+              <line x1="192" y1="182" x2="253" y2="182" stroke="#00E5FF" stroke-width="0.6" opacity="0.5" class="scan-line"/>
+              <!-- Nose bridge panel -->
+              <rect x="170" y="205" width="20" height="30" rx="4" fill="#0d0025" stroke="#7C4DFF" stroke-width="0.8" opacity="0.6"/>
+              <circle cx="180" cy="220" r="3" fill="#7C4DFF" filter="url(#glow)"/>
+              <!-- Mouth/speaker grill -->
+              <rect x="130" y="248" width="100" height="22" rx="6" fill="#050816" stroke="#00E5FF" stroke-width="1" filter="url(#glow)"/>
+              <line x1="140" y1="255" x2="220" y2="255" stroke="#00E5FF" stroke-width="1" opacity="0.7"/>
+              <line x1="140" y1="260" x2="220" y2="260" stroke="#7C4DFF" stroke-width="1" opacity="0.5"/>
+              <line x1="140" y1="265" x2="220" y2="265" stroke="#00E5FF" stroke-width="1" opacity="0.7"/>
+              <!-- Speaker dots -->
+              <circle cx="148" cy="259" r="1.5" fill="#00E5FF" opacity="0.9"/>
+              <circle cx="155" cy="259" r="1.5" fill="#7C4DFF" opacity="0.9"/>
+              <circle cx="162" cy="259" r="1.5" fill="#00E5FF" opacity="0.9"/>
+              <!-- Cheek panels -->
+              <path d="M90,195 L110,175 L110,215 Z" fill="#0d0025" stroke="#7C4DFF" stroke-width="0.8" opacity="0.7"/>
+              <path d="M270,195 L250,175 L250,215 Z" fill="#0d0025" stroke="#7C4DFF" stroke-width="0.8" opacity="0.7"/>
+              <!-- Temple circuit nodes -->
+              <circle cx="97" cy="185" r="4" fill="none" stroke="#00E5FF" stroke-width="1.5" filter="url(#glow)"/>
+              <circle cx="97" cy="185" r="2" fill="#00E5FF" opacity="0.8" filter="url(#glow)"/>
+              <circle cx="263" cy="185" r="4" fill="none" stroke="#00E5FF" stroke-width="1.5" filter="url(#glow)"/>
+              <circle cx="263" cy="185" r="2" fill="#00E5FF" opacity="0.8" filter="url(#glow)"/>
+              <!-- Scanning beam -->
+              <rect x="88" y="198" width="184" height="2" rx="1" fill="url(#cyanGrad)" opacity="0.6" class="scan-beam" filter="url(#glow)"/>
+              <!-- Top antenna -->
+              <line x1="180" y1="90" x2="180" y2="55" stroke="#7C4DFF" stroke-width="2" filter="url(#glow)"/>
+              <circle cx="180" cy="50" r="6" fill="none" stroke="#00E5FF" stroke-width="1.5" filter="url(#strongGlow)"/>
+              <circle cx="180" cy="50" r="3" fill="#00E5FF" filter="url(#strongGlow)" class="antenna-pulse"/>
+              <!-- Side antennas -->
+              <line x1="92" y1="155" x2="70" y2="130" stroke="#7C4DFF" stroke-width="1.2" opacity="0.7"/>
+              <circle cx="68" cy="128" r="3" fill="#7C4DFF" filter="url(#glow)" class="antenna-pulse"/>
+              <line x1="268" y1="155" x2="290" y2="130" stroke="#7C4DFF" stroke-width="1.2" opacity="0.7"/>
+              <circle cx="292" cy="128" r="3" fill="#7C4DFF" filter="url(#glow)" class="antenna-pulse"/>
+              <!-- Circuit lines on head -->
+              <path d="M180,340 Q120,330 100,280 Q95,260 98,240" stroke="#7C4DFF" stroke-width="0.8" fill="none" opacity="0.5" filter="url(#glow)"/>
+              <path d="M180,340 Q240,330 260,280 Q265,260 262,240" stroke="#7C4DFF" stroke-width="0.8" fill="none" opacity="0.5" filter="url(#glow)"/>
+            </svg>
+
+            <!-- Orbiting rings -->
+            <div class="orbit-ring orbit-ring--1" aria-hidden="true"></div>
+            <div class="orbit-ring orbit-ring--2" aria-hidden="true"></div>
+            <div class="orbit-dot orbit-dot--1" aria-hidden="true"></div>
+            <div class="orbit-dot orbit-dot--2" aria-hidden="true"></div>
+
+            <!-- Floating data chips -->
+            <div class="data-chip data-chip--1" aria-hidden="true"><span>99.8%</span> Accuracy</div>
+            <div class="data-chip data-chip--2" aria-hidden="true"><span>24/7</span> Live</div>
+            <div class="data-chip data-chip--3" aria-hidden="true"><span>AI</span> Core</div>
+          </div>
+        </figure>
       </div>
 
-      <div class="hero-scroll-cue" aria-hidden="true">
-        <div class="scroll-mouse">
-          <div class="scroll-wheel"></div>
+      <!-- Scroll indicator -->
+      <a href="#about" class="scroll-indicator" aria-label="Scroll to next section">
+        <span class="scroll-label">Scroll</span>
+        <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+      </a>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="about" id="about" aria-labelledby="aboutHeading">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-visual" data-reveal>
+            <div class="about-graphic">
+              <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                  <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#00E5FF"/>
+                    <stop offset="100%" stop-color="#7C4DFF"/>
+                  </linearGradient>
+                </defs>
+                <!-- Neural network visualization -->
+                <!-- Input layer -->
+                <circle cx="60" cy="100" r="14" fill="none" stroke="#00E5FF" stroke-width="1.5" opacity="0.9"/>
+                <circle cx="60" cy="100" r="6" fill="#00E5FF" opacity="0.7"/>
+                <circle cx="60" cy="160" r="14" fill="none" stroke="#00E5FF" stroke-width="1.5" opacity="0.9"/>
+                <circle cx="60" cy="160" r="6" fill="#00E5FF" opacity="0.7"/>
+                <circle cx="60" cy="220" r="14" fill="none" stroke="#00E5FF" stroke-width="1.5" opacity="0.9"/>
+                <circle cx="60" cy="220" r="6" fill="#00E5FF" opacity="0.7"/>
+                <circle cx="60" cy="280" r="14" fill="none" stroke="#00E5FF" stroke-width="1.5" opacity="0.9"/>
+                <circle cx="60" cy="280" r="6" fill="#00E5FF" opacity="0.7"/>
+                <!-- Hidden layer 1 -->
+                <circle cx="160" cy="80" r="14" fill="none" stroke="#7C4DFF" stroke-width="1.5"/>
+                <circle cx="160" cy="80" r="6" fill="#7C4DFF" opacity="0.7"/>
+                <circle cx="160" cy="140" r="14" fill="none" stroke="#7C4DFF" stroke-width="1.5"/>
+                <circle cx="160" cy="140" r="6" fill="#7C4DFF" opacity="0.7"/>
+                <circle cx="160" cy="200" r="14" fill="none" stroke="#7C4DFF" stroke-width="1.5"/>
+                <circle cx="160" cy="200" r="6" fill="#7C4DFF" opacity="0.7"/>
+                <circle cx="160" cy="260" r="14" fill="none" stroke="#7C4DFF" stroke-width="1.5"/>
+                <circle cx="160" cy="260" r="6" fill="#7C4DFF" opacity="0.7"/>
+                <circle cx="160" cy="320" r="14" fill="none" stroke="#7C4DFF" stroke-width="1.5"/>
+                <circle cx="160" cy="320" r="6" fill="#7C4DFF" opacity="0.7"/>
+                <!-- Hidden layer 2 -->
+                <circle cx="260" cy="100" r="14" fill="none" stroke="#00FFAE" stroke-width="1.5"/>
+                <circle cx="260" cy="100" r="6" fill="#00FFAE" opacity="0.7"/>
+                <circle cx="260" cy="160" r="14" fill="none" stroke="#00FFAE" stroke-width="1.5"/>
+                <circle cx="260" cy="160" r="6" fill="#00FFAE" opacity="0.7"/>
+                <circle cx="260" cy="220" r="14" fill="none" stroke="#00FFAE" stroke-width="1.5"/>
+                <circle cx="260" cy="220" r="6" fill="#00FFAE" opacity="0.7"/>
+                <circle cx="260" cy="280" r="14" fill="none" stroke="#00FFAE" stroke-width="1.5"/>
+                <circle cx="260" cy="280" r="6" fill="#00FFAE" opacity="0.7"/>
+                <!-- Output layer -->
+                <circle cx="360" cy="160" r="18" fill="none" stroke="url(#nodeGrad)" stroke-width="2"/>
+                <circle cx="360" cy="160" r="9" fill="url(#nodeGrad)" opacity="0.9"/>
+                <circle cx="360" cy="240" r="18" fill="none" stroke="url(#nodeGrad)" stroke-width="2"/>
+                <circle cx="360" cy="240" r="9" fill="url(#nodeGrad)" opacity="0.9"/>
+                <!-- Connections (selected) -->
+                <g opacity="0.2" stroke="#00E5FF" stroke-width="0.8">
+                  <line x1="74" y1="100" x2="146" y2="80"/><line x1="74" y1="100" x2="146" y2="140"/>
+                  <line x1="74" y1="100" x2="146" y2="200"/><line x1="74" y1="160" x2="146" y2="80"/>
+                  <line x1="74" y1="160" x2="146" y2="140"/><line x1="74" y1="160" x2="146" y2="260"/>
+                  <line x1="74" y1="220" x2="146" y2="200"/><line x1="74" y1="220" x2="146" y2="260"/>
+                  <line x1="74" y1="280" x2="146" y2="200"/><line x1="74" y1="280" x2="146" y2="320"/>
+                </g>
+                <g opacity="0.2" stroke="#7C4DFF" stroke-width="0.8">
+                  <line x1="174" y1="80" x2="246" y2="100"/><line x1="174" y1="80" x2="246" y2="160"/>
+                  <line x1="174" y1="140" x2="246" y2="100"/><line x1="174" y1="140" x2="246" y2="220"/>
+                  <line x1="174" y1="200" x2="246" y2="160"/><line x1="174" y1="200" x2="246" y2="280"/>
+                  <line x1="174" y1="260" x2="246" y2="220"/><line x1="174" y1="260" x2="246" y2="280"/>
+                  <line x1="174" y1="320" x2="246" y2="280"/>
+                </g>
+                <g opacity="0.3" stroke="#00FFAE" stroke-width="1">
+                  <line x1="274" y1="100" x2="342" y2="160"/><line x1="274" y1="160" x2="342" y2="160"/>
+                  <line x1="274" y1="220" x2="342" y2="240"/><line x1="274" y1="280" x2="342" y2="240"/>
+                  <line x1="274" y1="160" x2="342" y2="240"/><line x1="274" y1="220" x2="342" y2="160"/>
+                </g>
+              </svg>
+              <div class="about-glow-ring" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <div class="about-content" data-reveal data-delay="200">
+            <div class="section-eyebrow">About Nexus AI</div>
+            <h2 id="aboutHeading">We Don't Predict the Future.<br /><span class="text-gradient">We Build It.</span></h2>
+            <p>Nexus AI is a global leader in applied artificial intelligence, established to bridge the gap between breakthrough research and real-world enterprise transformation. Our systems process over 2.4 billion data events daily across six continents.</p>
+            <p>We believe intelligence — artificial or human — is most powerful when it acts on understanding, not just data. Every model we deploy is purpose-built to reason, adapt, and evolve in the environments where it operates.</p>
+            <div class="about-pillars">
+              <div class="pillar">
+                <div class="pillar-icon">⚡</div>
+                <div>
+                  <strong>Mission</strong>
+                  <p>To make transformative AI accessible, responsible, and impactful for every organization on Earth.</p>
+                </div>
+              </div>
+              <div class="pillar">
+                <div class="pillar-icon">🔭</div>
+                <div>
+                  <strong>Vision</strong>
+                  <p>A world where AI amplifies human potential without replacing human purpose.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <span>Scroll</span>
       </div>
     </section>
 
-    <!-- ─────────────────────────── STATS COUNTER ─────────────────────────── -->
-    <section class="stats-section" aria-label="Company statistics">
+    <!-- ===== AI SOLUTIONS ===== -->
+    <section class="solutions" id="solutions" aria-labelledby="solutionsHeading">
       <div class="container">
-        <div class="stats-grid">
-          <article class="stat-card reveal-up">
-            <span class="stat-card-num counter" data-target="50" data-suffix="+">0</span>
-            <span class="stat-card-label">AI Projects Deployed</span>
-            <div class="stat-card-bar" aria-hidden="true"><div class="stat-card-fill" style="width:85%"></div></div>
-          </article>
-          <article class="stat-card reveal-up delay-1">
-            <span class="stat-card-num counter" data-target="10000" data-suffix="+">0</span>
-            <span class="stat-card-label">Users Worldwide</span>
-            <div class="stat-card-bar" aria-hidden="true"><div class="stat-card-fill" style="width:72%"></div></div>
-          </article>
-          <article class="stat-card reveal-up delay-2">
-            <span class="stat-card-num counter" data-target="99" data-suffix="%">0</span>
-            <span class="stat-card-label">Model Accuracy</span>
-            <div class="stat-card-bar" aria-hidden="true"><div class="stat-card-fill" style="width:99%"></div></div>
-          </article>
-          <article class="stat-card reveal-up delay-3">
-            <span class="stat-card-num">24/7</span>
-            <span class="stat-card-label">Uptime Support</span>
-            <div class="stat-card-bar" aria-hidden="true"><div class="stat-card-fill" style="width:100%"></div></div>
-          </article>
+        <div class="section-header" data-reveal>
+          <div class="section-eyebrow">What We Build</div>
+          <h2 id="solutionsHeading">AI Solutions That <span class="text-gradient">Scale with You</span></h2>
+          <p>From raw data to intelligent action — our six core platforms cover the full spectrum of enterprise AI.</p>
         </div>
-      </div>
-    </section>
-
-    <!-- ─────────────────────────── AI SOLUTIONS ─────────────────────────── -->
-    <section class="solutions-section" id="solutions" aria-labelledby="solutions-heading">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-eyebrow reveal-fade">Capabilities</span>
-          <h2 class="section-title reveal-fade delay-1" id="solutions-heading">AI Solutions</h2>
-          <p class="section-desc reveal-fade delay-2">Four pillars of modern artificial intelligence — each engineered for production-grade reliability and real-world impact.</p>
-        </div>
-
         <div class="solutions-grid">
+          <article class="sol-card" data-reveal data-delay="0">
+            <div class="sol-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 38L16 26L24 30L32 18L40 10" stroke="url(#cg1)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="40" cy="10" r="4" fill="#00E5FF"/>
+                <defs><linearGradient id="cg1" x1="8" y1="38" x2="40" y2="10" gradientUnits="userSpaceOnUse"><stop stop-color="#00E5FF"/><stop offset="1" stop-color="#7C4DFF"/></linearGradient></defs>
+              </svg>
+            </div>
+            <h3>Predictive Analytics</h3>
+            <p>Forecast market shifts, equipment failures, and customer behavior before they happen. Our probabilistic models achieve up to 94% forward accuracy on structured enterprise data.</p>
+            <div class="sol-tags"><span>Forecasting</span><span>BI</span><span>Time-Series</span></div>
+          </article>
 
-          <article class="solution-card reveal-up" tabindex="0">
-            <div class="solution-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <article class="sol-card" data-reveal data-delay="100">
+            <div class="sol-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="24" cy="24" r="8" stroke="#7C4DFF" stroke-width="2"/>
+                <path d="M24 8V16M24 32V40M8 24H16M32 24H40M12 12L18 18M30 30L36 36M36 12L30 18M18 30L12 36" stroke="url(#cg2)" stroke-width="2" stroke-linecap="round"/>
+                <defs><linearGradient id="cg2" x1="8" y1="8" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#7C4DFF"/><stop offset="1" stop-color="#00E5FF"/></linearGradient></defs>
+              </svg>
             </div>
             <h3>Machine Learning</h3>
-            <p>End-to-end ML pipelines — from feature engineering and model training to deployment and continuous monitoring at scale.</p>
-            <ul class="solution-tags" aria-label="Technologies">
-              <li>PyTorch</li><li>TensorFlow</li><li>MLflow</li>
-            </ul>
-            <a href="#contact" class="solution-link">Get started <span aria-hidden="true">→</span></a>
+            <p>Adaptive models that learn from your operational data in real time. AutoML pipelines reduce model development from months to days, with continuous drift detection and self-correction.</p>
+            <div class="sol-tags"><span>AutoML</span><span>Deep Learning</span><span>MLOps</span></div>
           </article>
 
-          <article class="solution-card reveal-up delay-1" tabindex="0">
-            <div class="solution-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M20.188 10.934c.2.643.312 1.326.312 2.033 0 3.866-3.134 6.999-7 6.999S6.5 16.833 6.5 12.967c0-3.866 3.134-7 7-7 .707 0 1.39.112 2.034.312"/><path d="M22 6l-6 6"/><path d="M16 6h6v6"/></svg>
+          <article class="sol-card" data-reveal data-delay="200">
+            <div class="sol-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="8" y="12" width="32" height="24" rx="3" stroke="#00FFAE" stroke-width="2"/>
+                <circle cx="24" cy="24" r="6" stroke="#00FFAE" stroke-width="2"/>
+                <circle cx="24" cy="24" r="2" fill="#00FFAE"/>
+                <path d="M14 18L18 22M30 26L34 30M14 30L18 26M30 22L34 18" stroke="#00FFAE" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+              </svg>
             </div>
             <h3>Computer Vision</h3>
-            <p>Real-time object detection, semantic segmentation, and image understanding systems that see the world with superhuman precision.</p>
-            <ul class="solution-tags" aria-label="Technologies">
-              <li>YOLO v9</li><li>OpenCV</li><li>SAM 2</li>
-            </ul>
-            <a href="#contact" class="solution-link">Get started <span aria-hidden="true">→</span></a>
+            <p>Real-time object detection, scene understanding, and quality inspection at industrial scale. Processes 480fps video streams with sub-12ms inference latency.</p>
+            <div class="sol-tags"><span>Detection</span><span>Segmentation</span><span>OCR</span></div>
           </article>
 
-          <article class="solution-card reveal-up delay-2" tabindex="0">
-            <div class="solution-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-            </div>
-            <h3>Generative AI</h3>
-            <p>Large language models, diffusion pipelines, and multimodal generation — crafting intelligent systems that create, reason, and converse.</p>
-            <ul class="solution-tags" aria-label="Technologies">
-              <li>LLMs</li><li>Diffusion</li><li>RAG</li>
-            </ul>
-            <a href="#contact" class="solution-link">Get started <span aria-hidden="true">→</span></a>
-          </article>
-
-          <article class="solution-card reveal-up delay-3" tabindex="0">
-            <div class="solution-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <article class="sol-card" data-reveal data-delay="300">
+            <div class="sol-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M10 16C10 13.8 11.8 12 14 12H34C36.2 12 38 13.8 38 16V28C38 30.2 36.2 32 34 32H26L18 38V32H14C11.8 32 10 30.2 10 28V16Z" stroke="url(#cg3)" stroke-width="2"/>
+                <path d="M16 20H32M16 26H26" stroke="url(#cg3)" stroke-width="2" stroke-linecap="round"/>
+                <defs><linearGradient id="cg3" x1="10" y1="12" x2="38" y2="38" gradientUnits="userSpaceOnUse"><stop stop-color="#00E5FF"/><stop offset="1" stop-color="#7C4DFF"/></linearGradient></defs>
+              </svg>
             </div>
             <h3>Natural Language Processing</h3>
-            <p>Semantic search, sentiment analysis, entity extraction, and conversational AI — understanding language at every level of abstraction.</p>
-            <ul class="solution-tags" aria-label="Technologies">
-              <li>Transformers</li><li>spaCy</li><li>BERT</li>
-            </ul>
-            <a href="#contact" class="solution-link">Get started <span aria-hidden="true">→</span></a>
+            <p>Multilingual understanding, document intelligence, and conversational AI that integrates into existing enterprise workflows via REST APIs with average response under 200ms.</p>
+            <div class="sol-tags"><span>LLM</span><span>Multilingual</span><span>RAG</span></div>
           </article>
 
-        </div>
-      </div>
-    </section>
-
-    <!-- ─────────────────────────── PORTFOLIO ─────────────────────────── -->
-    <section class="portfolio-section" id="portfolio" aria-labelledby="portfolio-heading">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-eyebrow reveal-fade">Featured Work</span>
-          <h2 class="section-title reveal-fade delay-1" id="portfolio-heading">Project Showcase</h2>
-          <p class="section-desc reveal-fade delay-2">Production systems built for real users — each solving a distinct problem at the intersection of AI and everyday life.</p>
-        </div>
-
-        <div class="portfolio-grid">
-
-          <article class="project-card reveal-up" tabindex="0">
-            <div class="project-visual project-visual-1" aria-hidden="true">
-              <div class="project-viz-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/><path d="M12 14v6M9 17l3-3 3 3"/></svg>
-              </div>
+          <article class="sol-card" data-reveal data-delay="400">
+            <div class="sol-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M24 8L38 16V32L24 40L10 32V16L24 8Z" stroke="url(#cg4)" stroke-width="2"/>
+                <path d="M24 8V40M10 16L38 32M38 16L10 32" stroke="url(#cg4)" stroke-width="1" opacity="0.5"/>
+                <circle cx="24" cy="24" r="4" fill="url(#cg4)"/>
+                <defs><linearGradient id="cg4" x1="10" y1="8" x2="38" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#7C4DFF"/><stop offset="1" stop-color="#00FFAE"/></linearGradient></defs>
+              </svg>
             </div>
-            <div class="project-body">
-              <div class="project-meta">
-                <span class="project-tag">Voice AI</span>
-                <span class="project-year">2024</span>
-              </div>
-              <h3>JARVIS Virtual Assistant</h3>
-              <p>Conversational AI assistant with voice recognition, smart home integration, real-time web search, and context-aware task automation.</p>
-              <div class="project-tech" aria-label="Tech stack">
-                <span>Python</span><span>Whisper</span><span>GPT-4o</span><span>FastAPI</span>
-              </div>
-              <div class="project-actions">
-                <a href="#contact" class="btn btn-sm btn-outline">View Case Study</a>
-              </div>
-            </div>
+            <h3>Autonomous Decision Systems</h3>
+            <p>AI agents that evaluate complex multi-variable scenarios and execute decisions within auditable, policy-constrained frameworks — 7,000+ decisions per second with full explainability.</p>
+            <div class="sol-tags"><span>Agents</span><span>RLHF</span><span>XAI</span></div>
           </article>
 
-          <article class="project-card reveal-up delay-1" tabindex="0">
-            <div class="project-visual project-visual-2" aria-hidden="true">
-              <div class="project-viz-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-              </div>
-            </div>
-            <div class="project-body">
-              <div class="project-meta">
-                <span class="project-tag">Health AI</span>
-                <span class="project-year">2024</span>
-              </div>
-              <h3>PulseX Health Assistant</h3>
-              <p>Wearable-connected health monitoring platform with predictive analytics, symptom triage, and personalized wellness recommendations.</p>
-              <div class="project-tech" aria-label="Tech stack">
-                <span>React Native</span><span>TensorFlow Lite</span><span>BLE</span>
-              </div>
-              <div class="project-actions">
-                <a href="#contact" class="btn btn-sm btn-outline">View Case Study</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal-up delay-2" tabindex="0">
-            <div class="project-visual project-visual-3" aria-hidden="true">
-              <div class="project-viz-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/><path d="M12 9v-4M12 19v-4"/></svg>
-              </div>
-            </div>
-            <div class="project-body">
-              <div class="project-meta">
-                <span class="project-tag">Embedded AI</span>
-                <span class="project-year">2023</span>
-              </div>
-              <h3>Smart Blind Stick</h3>
-              <p>IoT-powered navigation aid using ultrasonic sensing, AI object detection, and haptic feedback to assist visually impaired individuals.</p>
-              <div class="project-tech" aria-label="Tech stack">
-                <span>Raspberry Pi</span><span>OpenCV</span><span>YOLOv8</span>
-              </div>
-              <div class="project-actions">
-                <a href="#contact" class="btn btn-sm btn-outline">View Case Study</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card reveal-up delay-3" tabindex="0">
-            <div class="project-visual project-visual-4" aria-hidden="true">
-              <div class="project-viz-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-              </div>
-            </div>
-            <div class="project-body">
-              <div class="project-meta">
-                <span class="project-tag">FinTech AI</span>
-                <span class="project-year">2024</span>
-              </div>
-              <h3>InvestWise Stock Analyzer</h3>
-              <p>AI-driven stock analysis platform with sentiment modeling, technical pattern recognition, and natural language portfolio reports.</p>
-              <div class="project-tech" aria-label="Tech stack">
-                <span>Next.js</span><span>LSTM</span><span>Alpha Vantage</span>
-              </div>
-              <div class="project-actions">
-                <a href="#contact" class="btn btn-sm btn-outline">View Case Study</a>
-              </div>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ─────────────────────────── ROBOTICS ─────────────────────────── -->
-    <section class="robotics-section" id="robotics" aria-labelledby="robotics-heading">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-eyebrow reveal-fade">Hardware + Software</span>
-          <h2 class="section-title reveal-fade delay-1" id="robotics-heading">Robotics</h2>
-          <p class="section-desc reveal-fade delay-2">Where AI meets the physical world. We engineer robotic systems that operate autonomously in complex, unstructured environments.</p>
-        </div>
-
-        <div class="robotics-grid">
-
-          <article class="robotics-card reveal-up" tabindex="0">
-            <div class="robotics-number" aria-hidden="true">01</div>
-            <div class="robotics-icon" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
-            </div>
-            <h3>Industrial Robotics</h3>
-            <p>Autonomous manufacturing arms, collaborative robots (cobots), and AI-powered quality inspection systems for Industry 4.0 environments.</p>
-            <div class="robotics-features" aria-label="Key features">
-              <span>6-DOF Arms</span>
-              <span>Force Feedback</span>
-              <span>Digital Twin</span>
-            </div>
-          </article>
-
-          <article class="robotics-card reveal-up delay-1" tabindex="0">
-            <div class="robotics-number" aria-hidden="true">02</div>
-            <div class="robotics-icon" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            </div>
-            <h3>Healthcare Robotics</h3>
-            <p>Surgical assistance robots, patient monitoring drones, and AI diagnostics platforms that support clinicians and improve patient outcomes.</p>
-            <div class="robotics-features" aria-label="Key features">
-              <span>Surgical Assist</span>
-              <span>FDA-grade AI</span>
-              <span>EMR Integration</span>
-            </div>
-          </article>
-
-          <article class="robotics-card reveal-up delay-2" tabindex="0">
-            <div class="robotics-number" aria-hidden="true">03</div>
-            <div class="robotics-icon" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          <article class="sol-card" data-reveal data-delay="500">
+            <div class="sol-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="8" y="8" width="14" height="14" rx="2" stroke="#00E5FF" stroke-width="2"/>
+                <rect x="26" y="8" width="14" height="14" rx="2" stroke="#7C4DFF" stroke-width="2"/>
+                <rect x="8" y="26" width="14" height="14" rx="2" stroke="#7C4DFF" stroke-width="2"/>
+                <rect x="26" y="26" width="14" height="14" rx="2" stroke="#00FFAE" stroke-width="2"/>
+                <path d="M22 15H26M15 22V26M33 22V26M26 33H22" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+              </svg>
             </div>
             <h3>Smart Automation</h3>
-            <p>End-to-end warehouse automation, autonomous mobile robots (AMRs), and AI-driven process optimization for logistics and supply chains.</p>
-            <div class="robotics-features" aria-label="Key features">
-              <span>SLAM Navigation</span>
-              <span>Fleet Management</span>
-              <span>Real-time OTA</span>
+            <p>End-to-end workflow automation with AI-driven exception handling. Eliminate repetitive processes, reduce operational overhead by up to 67%, and free teams for strategic work.</p>
+            <div class="sol-tags"><span>RPA</span><span>Workflows</span><span>Integration</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ROBOTICS ===== -->
+    <section class="robotics" id="robotics" aria-labelledby="roboticsHeading">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <div class="section-eyebrow">Physical Intelligence</div>
+          <h2 id="roboticsHeading">Robotics Systems That <span class="text-gradient">Think and Act</span></h2>
+          <p>Where software intelligence meets mechanical precision — our robotics division deploys autonomous systems that operate safely alongside humans.</p>
+        </div>
+
+        <div class="robotics-feature" data-reveal>
+          <figure class="rob-visual">
+            <svg viewBox="0 0 320 400" xmlns="http://www.w3.org/2000/svg" aria-label="Industrial robot illustration">
+              <defs>
+                <linearGradient id="robGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#1a1040"/>
+                  <stop offset="100%" stop-color="#0a001a"/>
+                </linearGradient>
+                <filter id="robGlow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
+              <!-- Robot body -->
+              <rect x="110" y="150" width="100" height="120" rx="10" fill="url(#robGrad)" stroke="#7C4DFF" stroke-width="1.5"/>
+              <!-- Chest display -->
+              <rect x="125" y="165" width="70" height="45" rx="4" fill="#050816" stroke="#00E5FF" stroke-width="1" filter="url(#robGlow)"/>
+              <text x="160" y="182" text-anchor="middle" fill="#00E5FF" font-size="7" font-family="Orbitron">NEXUS</text>
+              <text x="160" y="192" text-anchor="middle" fill="#7C4DFF" font-size="6" font-family="Orbitron">UNIT-7</text>
+              <!-- Status bars -->
+              <rect x="130" y="197" width="60" height="3" rx="1" fill="#0a0020"/>
+              <rect x="130" y="197" width="50" height="3" rx="1" fill="#00E5FF" filter="url(#robGlow)"/>
+              <rect x="130" y="203" width="60" height="3" rx="1" fill="#0a0020"/>
+              <rect x="130" y="203" width="38" height="3" rx="1" fill="#7C4DFF" filter="url(#robGlow)"/>
+              <!-- Head -->
+              <rect x="125" y="90" width="70" height="55" rx="8" fill="url(#robGrad)" stroke="#00E5FF" stroke-width="1.5"/>
+              <!-- Robot eyes -->
+              <rect x="135" y="103" width="20" height="12" rx="3" fill="#050816" stroke="#00E5FF" stroke-width="1" filter="url(#robGlow)"/>
+              <circle cx="145" cy="109" r="4" fill="#00E5FF" filter="url(#robGlow)"/>
+              <rect x="165" y="103" width="20" height="12" rx="3" fill="#050816" stroke="#00E5FF" stroke-width="1" filter="url(#robGlow)"/>
+              <circle cx="175" cy="109" r="4" fill="#00E5FF" filter="url(#robGlow)"/>
+              <!-- Mouth -->
+              <rect x="140" y="124" width="40" height="8" rx="2" fill="#050816" stroke="#7C4DFF" stroke-width="0.8"/>
+              <line x1="144" y1="128" x2="176" y2="128" stroke="#7C4DFF" stroke-width="0.8" opacity="0.7" filter="url(#robGlow)"/>
+              <!-- Neck -->
+              <rect x="148" y="145" width="24" height="10" rx="3" fill="#0d0025" stroke="#7C4DFF" stroke-width="1"/>
+              <!-- Left arm -->
+              <rect x="70" y="155" width="35" height="16" rx="6" fill="url(#robGrad)" stroke="#7C4DFF" stroke-width="1.2"/>
+              <rect x="45" y="160" width="30" height="14" rx="6" fill="url(#robGrad)" stroke="#7C4DFF" stroke-width="1"/>
+              <!-- Left hand -->
+              <rect x="28" y="162" width="18" height="10" rx="4" fill="url(#robGrad)" stroke="#00E5FF" stroke-width="1" filter="url(#robGlow)"/>
+              <!-- Right arm -->
+              <rect x="215" y="155" width="35" height="16" rx="6" fill="url(#robGrad)" stroke="#7C4DFF" stroke-width="1.2"/>
+              <rect x="245" y="160" width="30" height="14" rx="6" fill="url(#robGrad)" stroke="#7C4DFF" stroke-width="1"/>
+              <!-- Right hand with tool -->
+              <rect x="274" y="162" width="18" height="10" rx="4" fill="url(#robGrad)" stroke="#00FFAE" stroke-width="1" filter="url(#robGlow)"/>
+              <line x1="292" y1="167" x2="308" y2="155" stroke="#00FFAE" stroke-width="1.5" stroke-linecap="round" filter="url(#robGlow)"/>
+              <!-- Legs -->
+              <rect x="125" y="270" width="28" height="80" rx="8" fill="url(#robGrad)" stroke="#7C4DFF" stroke-width="1.2"/>
+              <rect x="167" y="270" width="28" height="80" rx="8" fill="url(#robGrad)" stroke="#7C4DFF" stroke-width="1.2"/>
+              <!-- Feet -->
+              <rect x="118" y="342" width="42" height="16" rx="6" fill="url(#robGrad)" stroke="#00E5FF" stroke-width="1"/>
+              <rect x="160" y="342" width="42" height="16" rx="6" fill="url(#robGrad)" stroke="#00E5FF" stroke-width="1"/>
+              <!-- Shoulder joints -->
+              <circle cx="113" cy="163" r="8" fill="url(#robGrad)" stroke="#00E5FF" stroke-width="1.5" filter="url(#robGlow)"/>
+              <circle cx="207" cy="163" r="8" fill="url(#robGrad)" stroke="#00E5FF" stroke-width="1.5" filter="url(#robGlow)"/>
+              <!-- Hip joints -->
+              <circle cx="139" cy="270" r="7" fill="url(#robGrad)" stroke="#7C4DFF" stroke-width="1.5"/>
+              <circle cx="181" cy="270" r="7" fill="url(#robGrad)" stroke="#7C4DFF" stroke-width="1.5"/>
+              <!-- Ground shadow -->
+              <ellipse cx="160" cy="370" rx="80" ry="6" fill="#7C4DFF" opacity="0.15"/>
+            </svg>
+          </figure>
+          <div class="rob-content">
+            <h3>Industrial Robotics</h3>
+            <p>Precision-engineered robotic arms and mobile platforms designed for 24/7 operation in manufacturing, logistics, and hazardous environments. Each unit integrates our onboard Nexus Edge AI processor for sub-10ms reaction cycles.</p>
+            <ul class="rob-specs">
+              <li><span class="spec-label">Payload</span><span class="spec-val">Up to 250 kg</span></li>
+              <li><span class="spec-label">Precision</span><span class="spec-val">±0.02mm repeatability</span></li>
+              <li><span class="spec-label">Uptime</span><span class="spec-val">99.97% SLA</span></li>
+              <li><span class="spec-label">Reaction</span><span class="spec-val">&lt;10ms cycle time</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="robotics-cards">
+          <article class="rob-card" data-reveal>
+            <div class="rob-card-icon">🤖</div>
+            <h3>Autonomous Systems</h3>
+            <p>Self-navigating ground and aerial vehicles with LiDAR fusion, 3D mapping, and real-time obstacle avoidance operating in GPS-denied environments.</p>
+          </article>
+          <article class="rob-card" data-reveal data-delay="100">
+            <div class="rob-card-icon">🤝</div>
+            <h3>Human-Robot Collaboration</h3>
+            <p>Cobots with force-sensitive skins and intent-prediction algorithms that work directly beside humans without safety cages, adapting to workflow changes in real time.</p>
+          </article>
+          <article class="rob-card" data-reveal data-delay="200">
+            <div class="rob-card-icon">🏭</div>
+            <h3>Smart Manufacturing</h3>
+            <p>Full factory-floor orchestration: robotic cells, AGV fleets, and digital twin synchronization for adaptive production scheduling and predictive maintenance.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section class="projects" id="projects" aria-labelledby="projectsHeading">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <div class="section-eyebrow">Featured Work</div>
+          <h2 id="projectsHeading">Deployed at <span class="text-gradient">Global Scale</span></h2>
+          <p>Four of our flagship platforms, each solving a distinct enterprise challenge with purpose-built intelligence.</p>
+        </div>
+        <div class="projects-grid">
+
+          <article class="proj-card" data-reveal>
+            <div class="proj-image">
+              <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" aria-label="Nexus Vision project visual">
+                <defs><linearGradient id="pGrad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#050816"/><stop offset="100%" stop-color="#0F172A"/></linearGradient></defs>
+                <rect width="400" height="220" fill="url(#pGrad1)"/>
+                <!-- Grid lines -->
+                <g stroke="#00E5FF" stroke-width="0.3" opacity="0.3">
+                  <line x1="0" y1="40" x2="400" y2="40"/><line x1="0" y1="80" x2="400" y2="80"/>
+                  <line x1="0" y1="120" x2="400" y2="120"/><line x1="0" y1="160" x2="400" y2="160"/>
+                  <line x1="80" y1="0" x2="80" y2="220"/><line x1="160" y1="0" x2="160" y2="220"/>
+                  <line x1="240" y1="0" x2="240" y2="220"/><line x1="320" y1="0" x2="320" y2="220"/>
+                </g>
+                <!-- Eye scan frame -->
+                <rect x="120" y="40" width="160" height="140" rx="4" fill="none" stroke="#00E5FF" stroke-width="1.5" opacity="0.7"/>
+                <line x1="120" y1="40" x2="140" y2="40" stroke="#00E5FF" stroke-width="2"/><line x1="120" y1="40" x2="120" y2="60" stroke="#00E5FF" stroke-width="2"/>
+                <line x1="280" y1="40" x2="260" y2="40" stroke="#00E5FF" stroke-width="2"/><line x1="280" y1="40" x2="280" y2="60" stroke="#00E5FF" stroke-width="2"/>
+                <line x1="120" y1="180" x2="140" y2="180" stroke="#00E5FF" stroke-width="2"/><line x1="120" y1="180" x2="120" y2="160" stroke="#00E5FF" stroke-width="2"/>
+                <line x1="280" y1="180" x2="260" y2="180" stroke="#00E5FF" stroke-width="2"/><line x1="280" y1="180" x2="280" y2="160" stroke="#00E5FF" stroke-width="2"/>
+                <!-- Face detected circles -->
+                <circle cx="200" cy="110" r="40" fill="none" stroke="#00FFAE" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.8"/>
+                <circle cx="200" cy="100" r="8" fill="none" stroke="#00FFAE" stroke-width="1"/>
+                <circle cx="200" cy="100" r="3" fill="#00FFAE" opacity="0.8"/>
+                <rect x="180" y="120" width="40" height="8" rx="2" fill="none" stroke="#00FFAE" stroke-width="1"/>
+                <text x="200" y="155" text-anchor="middle" fill="#00E5FF" font-size="9" font-family="Orbitron" opacity="0.9">DETECTED: 99.2%</text>
+                <!-- Bounding boxes -->
+                <rect x="50" y="70" width="55" height="70" fill="none" stroke="#7C4DFF" stroke-width="1" opacity="0.6"/>
+                <rect x="295" y="80" width="55" height="60" fill="none" stroke="#7C4DFF" stroke-width="1" opacity="0.6"/>
+                <text x="77" y="66" text-anchor="middle" fill="#7C4DFF" font-size="7" font-family="Orbitron" opacity="0.8">OBJ 0.87</text>
+                <text x="323" y="76" text-anchor="middle" fill="#7C4DFF" font-size="7" font-family="Orbitron" opacity="0.8">OBJ 0.91</text>
+              </svg>
+            </div>
+            <div class="proj-body">
+              <h3>Nexus Vision</h3>
+              <p>AI-powered visual intelligence platform processing 4K video streams in real time. Deployed across 43 smart city networks for crowd analytics, object classification, and safety monitoring.</p>
+              <div class="proj-tags"><span>Computer Vision</span><span>Edge AI</span><span>Smart Cities</span></div>
+              <button class="btn btn--outline">Learn More</button>
+            </div>
+          </article>
+
+          <article class="proj-card" data-reveal data-delay="100">
+            <div class="proj-image">
+              <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" aria-label="AutoMind project visual">
+                <defs><linearGradient id="pGrad2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#050816"/><stop offset="100%" stop-color="#111827"/></linearGradient></defs>
+                <rect width="400" height="220" fill="url(#pGrad2)"/>
+                <!-- Workflow nodes -->
+                <circle cx="60" cy="110" r="22" fill="#0d0025" stroke="#7C4DFF" stroke-width="1.5"/>
+                <text x="60" y="107" text-anchor="middle" fill="#7C4DFF" font-size="7" font-family="Orbitron">DATA</text>
+                <text x="60" y="116" text-anchor="middle" fill="#7C4DFF" font-size="7" font-family="Orbitron">INPUT</text>
+                <circle cx="160" cy="70" r="22" fill="#0d0025" stroke="#00E5FF" stroke-width="1.5"/>
+                <text x="160" y="67" text-anchor="middle" fill="#00E5FF" font-size="7" font-family="Orbitron">PARSE</text>
+                <text x="160" y="76" text-anchor="middle" fill="#00E5FF" font-size="7" font-family="Orbitron">&amp; CLEAN</text>
+                <circle cx="160" cy="150" r="22" fill="#0d0025" stroke="#00E5FF" stroke-width="1.5"/>
+                <text x="160" y="147" text-anchor="middle" fill="#00E5FF" font-size="7" font-family="Orbitron">ROUTE</text>
+                <text x="160" y="156" text-anchor="middle" fill="#00E5FF" font-size="7" font-family="Orbitron">&amp; TAG</text>
+                <circle cx="260" cy="110" r="25" fill="#150a30" stroke="#00FFAE" stroke-width="2"/>
+                <text x="260" y="107" text-anchor="middle" fill="#00FFAE" font-size="7" font-family="Orbitron">AI</text>
+                <text x="260" y="116" text-anchor="middle" fill="#00FFAE" font-size="7" font-family="Orbitron">ENGINE</text>
+                <circle cx="360" cy="80" r="18" fill="#0d0025" stroke="#7C4DFF" stroke-width="1.5"/>
+                <text x="360" y="77" text-anchor="middle" fill="#7C4DFF" font-size="7" font-family="Orbitron">OUT</text>
+                <text x="360" y="86" text-anchor="middle" fill="#7C4DFF" font-size="7" font-family="Orbitron">A</text>
+                <circle cx="360" cy="140" r="18" fill="#0d0025" stroke="#7C4DFF" stroke-width="1.5"/>
+                <text x="360" y="137" text-anchor="middle" fill="#7C4DFF" font-size="7" font-family="Orbitron">OUT</text>
+                <text x="360" y="146" text-anchor="middle" fill="#7C4DFF" font-size="7" font-family="Orbitron">B</text>
+                <!-- Connections -->
+                <line x1="82" y1="100" x2="138" y2="78" stroke="#7C4DFF" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.7"/>
+                <line x1="82" y1="120" x2="138" y2="142" stroke="#7C4DFF" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.7"/>
+                <line x1="182" y1="75" x2="235" y2="100" stroke="#00E5FF" stroke-width="1.5" opacity="0.7"/>
+                <line x1="182" y1="145" x2="235" y2="120" stroke="#00E5FF" stroke-width="1.5" opacity="0.7"/>
+                <line x1="285" y1="100" x2="342" y2="84" stroke="#00FFAE" stroke-width="1.5" opacity="0.7"/>
+                <line x1="285" y1="120" x2="342" y2="136" stroke="#00FFAE" stroke-width="1.5" opacity="0.7"/>
+              </svg>
+            </div>
+            <div class="proj-body">
+              <h3>AutoMind</h3>
+              <p>Enterprise automation ecosystem that maps, optimizes, and autonomously executes complex business processes. Serves Fortune 500 clients with over 18 million automated decisions per day.</p>
+              <div class="proj-tags"><span>RPA</span><span>AI Orchestration</span><span>Enterprise</span></div>
+              <button class="btn btn--outline">Learn More</button>
+            </div>
+          </article>
+
+          <article class="proj-card" data-reveal data-delay="200">
+            <div class="proj-image">
+              <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" aria-label="NeuroLink Analytics project visual">
+                <defs><linearGradient id="pGrad3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#050816"/><stop offset="100%" stop-color="#0F172A"/></linearGradient></defs>
+                <rect width="400" height="220" fill="url(#pGrad3)"/>
+                <!-- Chart area -->
+                <line x1="40" y1="30" x2="40" y2="190" stroke="#7C4DFF" stroke-width="1" opacity="0.5"/>
+                <line x1="40" y1="190" x2="380" y2="190" stroke="#7C4DFF" stroke-width="1" opacity="0.5"/>
+                <!-- Grid -->
+                <g stroke="#7C4DFF" stroke-width="0.4" opacity="0.3">
+                  <line x1="40" y1="70" x2="380" y2="70"/><line x1="40" y1="110" x2="380" y2="110"/>
+                  <line x1="40" y1="150" x2="380" y2="150"/>
+                </g>
+                <!-- Area fill -->
+                <path d="M40,160 L90,145 L140,120 L190,130 L240,90 L290,70 L340,50 L380,40 L380,190 L40,190Z" fill="#00E5FF" opacity="0.07"/>
+                <!-- Line chart -->
+                <path d="M40,160 L90,145 L140,120 L190,130 L240,90 L290,70 L340,50 L380,40" fill="none" stroke="#00E5FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- Data points -->
+                <circle cx="90" cy="145" r="4" fill="#00E5FF"/><circle cx="140" cy="120" r="4" fill="#00E5FF"/>
+                <circle cx="190" cy="130" r="4" fill="#00E5FF"/><circle cx="240" cy="90" r="4" fill="#00E5FF"/>
+                <circle cx="290" cy="70" r="5" fill="#7C4DFF" stroke="#00E5FF" stroke-width="1.5"/>
+                <circle cx="340" cy="50" r="4" fill="#00E5FF"/><circle cx="380" cy="40" r="5" fill="#00FFAE" stroke="#ffffff" stroke-width="1.5"/>
+                <!-- Labels -->
+                <text x="200" y="20" text-anchor="middle" fill="#00E5FF" font-size="9" font-family="Orbitron" opacity="0.9">REAL-TIME PREDICTIVE INDEX</text>
+                <text x="380" y="35" text-anchor="end" fill="#00FFAE" font-size="8" font-family="Orbitron">▲ 94.2%</text>
+              </svg>
+            </div>
+            <div class="proj-body">
+              <h3>NeuroLink Analytics</h3>
+              <p>Real-time predictive analytics engine delivering sub-second insights from streaming data at petabyte scale. Powers trading desks, supply chains, and risk management platforms globally.</p>
+              <div class="proj-tags"><span>Predictive</span><span>Streaming</span><span>Finance</span></div>
+              <button class="btn btn--outline">Learn More</button>
+            </div>
+          </article>
+
+          <article class="proj-card" data-reveal data-delay="300">
+            <div class="proj-image">
+              <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg" aria-label="RoboAssist project visual">
+                <defs><linearGradient id="pGrad4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#050816"/><stop offset="100%" stop-color="#111827"/></linearGradient></defs>
+                <rect width="400" height="220" fill="url(#pGrad4)"/>
+                <!-- Floor plan view -->
+                <rect x="60" y="40" width="280" height="160" rx="4" fill="none" stroke="#7C4DFF" stroke-width="1" opacity="0.4"/>
+                <!-- Rooms -->
+                <rect x="60" y="40" width="140" height="80" rx="2" fill="none" stroke="#7C4DFF" stroke-width="0.8" opacity="0.3"/>
+                <rect x="200" y="40" width="140" height="80" rx="2" fill="none" stroke="#7C4DFF" stroke-width="0.8" opacity="0.3"/>
+                <!-- Robot position -->
+                <circle cx="160" cy="145" r="16" fill="#0d0025" stroke="#00FFAE" stroke-width="2"/>
+                <circle cx="160" cy="145" r="8" fill="#00FFAE" opacity="0.3"/>
+                <circle cx="160" cy="145" r="3" fill="#00FFAE"/>
+                <!-- Robot path -->
+                <path d="M90,145 L130,145 L160,145" stroke="#00FFAE" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.6"/>
+                <path d="M160,145 L200,120 L260,120 L290,145" stroke="#7C4DFF" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.6"/>
+                <!-- Waypoints -->
+                <circle cx="90" cy="145" r="4" fill="#7C4DFF" opacity="0.8"/>
+                <circle cx="290" cy="145" r="4" fill="#7C4DFF" opacity="0.8"/>
+                <!-- Coverage radius -->
+                <circle cx="160" cy="145" r="40" fill="none" stroke="#00FFAE" stroke-width="0.8" stroke-dasharray="3 3" opacity="0.3"/>
+                <!-- Labels -->
+                <text x="110" y="90" text-anchor="middle" fill="#7C4DFF" font-size="8" font-family="Orbitron" opacity="0.7">ZONE A</text>
+                <text x="260" y="90" text-anchor="middle" fill="#7C4DFF" font-size="8" font-family="Orbitron" opacity="0.7">ZONE B</text>
+                <text x="160" y="175" text-anchor="middle" fill="#00FFAE" font-size="8" font-family="Orbitron">ACTIVE</text>
+              </svg>
+            </div>
+            <div class="proj-body">
+              <h3>RoboAssist</h3>
+              <p>Autonomous robotic support network for healthcare, logistics, and hospitality. Fleet of 200+ units operating across 15 hospital networks, reducing staff burden by up to 40% on routine tasks.</p>
+              <div class="proj-tags"><span>Autonomous</span><span>Fleet Management</span><span>Healthcare</span></div>
+              <button class="btn btn--outline">Learn More</button>
             </div>
           </article>
 
@@ -376,219 +675,345 @@
       </div>
     </section>
 
-    <!-- ─────────────────────────── BLOG ─────────────────────────── -->
-    <section class="blog-section" id="blog" aria-labelledby="blog-heading">
+    <!-- ===== STATISTICS ===== -->
+    <section class="stats" id="stats" aria-labelledby="statsHeading">
+      <div class="stats-bg" aria-hidden="true"></div>
       <div class="container">
-        <div class="section-header">
-          <span class="section-eyebrow reveal-fade">Insights</span>
-          <h2 class="section-title reveal-fade delay-1" id="blog-heading">Technology Blog</h2>
-          <p class="section-desc reveal-fade delay-2">Research findings, engineering deep-dives, and perspectives on the AI landscape from our team.</p>
+        <div class="section-header" data-reveal>
+          <div class="section-eyebrow">By the Numbers</div>
+          <h2 id="statsHeading">Results That <span class="text-gradient">Speak for Themselves</span></h2>
         </div>
-
-        <div class="blog-grid">
-
-          <article class="blog-card reveal-up" tabindex="0">
-            <div class="blog-image blog-image-1" role="img" aria-label="Abstract neural network visualization">
-              <div class="blog-image-overlay" aria-hidden="true"></div>
-              <span class="blog-category">Research</span>
-            </div>
-            <div class="blog-body">
-              <div class="blog-date"><time datetime="2025-05-18">May 18, 2025</time> · 8 min read</div>
-              <h3>Scaling Transformers Beyond 1 Trillion Parameters</h3>
-              <p>How mixture-of-experts architectures enable extreme scale without proportional compute costs — and what that means for frontier AI.</p>
-              <a href="#" class="blog-link" aria-label="Read more about Scaling Transformers">Read More <span aria-hidden="true">→</span></a>
-            </div>
-          </article>
-
-          <article class="blog-card reveal-up delay-1" tabindex="0">
-            <div class="blog-image blog-image-2" role="img" aria-label="Robot arm in industrial environment">
-              <div class="blog-image-overlay" aria-hidden="true"></div>
-              <span class="blog-category">Engineering</span>
-            </div>
-            <div class="blog-body">
-              <div class="blog-date"><time datetime="2025-04-30">Apr 30, 2025</time> · 6 min read</div>
-              <h3>Sim-to-Real Transfer for Dexterous Manipulation</h3>
-              <p>Training robotic hands in simulation and deploying to physical hardware: the domain randomization techniques that actually close the gap.</p>
-              <a href="#" class="blog-link" aria-label="Read more about Sim-to-Real Transfer">Read More <span aria-hidden="true">→</span></a>
-            </div>
-          </article>
-
-          <article class="blog-card reveal-up delay-2" tabindex="0">
-            <div class="blog-image blog-image-3" role="img" aria-label="Data visualization and charts">
-              <div class="blog-image-overlay" aria-hidden="true"></div>
-              <span class="blog-category">Product</span>
-            </div>
-            <div class="blog-body">
-              <div class="blog-date"><time datetime="2025-04-10">Apr 10, 2025</time> · 5 min read</div>
-              <h3>Building RAG Pipelines That Actually Work in Production</h3>
-              <p>Lessons from deploying retrieval-augmented generation across 10,000+ users — chunking strategies, reranking, and latency optimization.</p>
-              <a href="#" class="blog-link" aria-label="Read more about RAG Pipelines">Read More <span aria-hidden="true">→</span></a>
-            </div>
-          </article>
-
+        <div class="stats-grid">
+          <div class="stat-item" data-reveal>
+            <div class="stat-number" data-count="500" data-suffix="+">0</div>
+            <div class="stat-label">AI Deployments</div>
+            <div class="stat-sub">Across 6 continents</div>
+          </div>
+          <div class="stat-item" data-reveal data-delay="100">
+            <div class="stat-number" data-count="98" data-suffix="%">0</div>
+            <div class="stat-label">Accuracy Rate</div>
+            <div class="stat-sub">Average model precision</div>
+          </div>
+          <div class="stat-item" data-reveal data-delay="200">
+            <div class="stat-number" data-count="120" data-suffix="+">0</div>
+            <div class="stat-label">Global Partners</div>
+            <div class="stat-sub">Enterprise clients</div>
+          </div>
+          <div class="stat-item" data-reveal data-delay="300">
+            <div class="stat-number" data-count="24" data-suffix="/7">0</div>
+            <div class="stat-label">AI Monitoring</div>
+            <div class="stat-sub">Always-on systems</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ─────────────────────────── CONTACT ─────────────────────────── -->
-    <section class="contact-section" id="contact" aria-labelledby="contact-heading">
+    <!-- ===== TIMELINE ===== -->
+    <section class="timeline" id="timeline" aria-labelledby="timelineHeading">
       <div class="container">
-        <div class="contact-wrapper">
+        <div class="section-header" data-reveal>
+          <div class="section-eyebrow">Technology Roadmap</div>
+          <h2 id="timelineHeading">The Path to <span class="text-gradient">General Intelligence</span></h2>
+          <p>Our research agenda maps the milestones that will reshape civilization over the next decade.</p>
+        </div>
+        <div class="timeline-track">
+          <div class="timeline-line" aria-hidden="true"></div>
+          <article class="tl-item tl-item--left" data-reveal>
+            <div class="tl-content">
+              <div class="tl-year">2025</div>
+              <h3>Advanced AI Systems</h3>
+              <p>Multi-modal foundation models with domain-specific fine-tuning pipelines deployed across 500+ enterprise installations. Real-time reasoning at human expert level for structured domains.</p>
+              <div class="tl-status tl-status--active">In Progress</div>
+            </div>
+            <div class="tl-node" aria-hidden="true"><div class="tl-dot"></div></div>
+          </article>
+          <article class="tl-item tl-item--right" data-reveal data-delay="150">
+            <div class="tl-node" aria-hidden="true"><div class="tl-dot"></div></div>
+            <div class="tl-content">
+              <div class="tl-year">2027</div>
+              <h3>Human-AI Collaboration</h3>
+              <p>Seamless bidirectional communication between human teams and AI agents. Shared workspaces where AI augments creativity, decision-making, and execution in real time without friction.</p>
+              <div class="tl-status">Planned</div>
+            </div>
+          </article>
+          <article class="tl-item tl-item--left" data-reveal data-delay="300">
+            <div class="tl-content">
+              <div class="tl-year">2030</div>
+              <h3>Autonomous Cities</h3>
+              <p>AI-governed urban infrastructure: self-optimizing traffic, predictive utility management, autonomous emergency response, and dynamic resource allocation across entire metropolitan areas.</p>
+              <div class="tl-status">Research Phase</div>
+            </div>
+            <div class="tl-node" aria-hidden="true"><div class="tl-dot"></div></div>
+          </article>
+          <article class="tl-item tl-item--right" data-reveal data-delay="450">
+            <div class="tl-node" aria-hidden="true"><div class="tl-dot"></div></div>
+            <div class="tl-content">
+              <div class="tl-year">2035</div>
+              <h3>General AI Integration</h3>
+              <p>Artificial General Intelligence woven into the fabric of daily enterprise and civic life — systems that reason across all domains, self-improve responsibly, and collaborate with humanity as true partners.</p>
+              <div class="tl-status">Visionary</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-          <div class="contact-info reveal-fade">
-            <span class="section-eyebrow">Get In Touch</span>
-            <h2 id="contact-heading">Start a Conversation</h2>
-            <p>Have a project in mind, or want to learn more about our AI capabilities? We respond within one business day.</p>
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="testimonials" id="testimonials" aria-labelledby="testimonialsHeading">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <div class="section-eyebrow">Client Voices</div>
+          <h2 id="testimonialsHeading">Trusted by <span class="text-gradient">Industry Leaders</span></h2>
+        </div>
+        <div class="testimonials-wrapper" data-reveal>
+          <div class="testi-carousel" id="testiCarousel" role="region" aria-label="Testimonials carousel">
+            <div class="testi-track" id="testiTrack">
 
-            <div class="contact-details">
-              <div class="contact-item">
-                <div class="contact-item-icon" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <article class="testi-card">
+                <div class="testi-quote">"</div>
+                <p>"Nexus AI's predictive analytics platform identified a supply chain disruption 11 days before it materialized. The ROI in the first quarter alone covered five years of contract value."</p>
+                <div class="testi-author">
+                  <div class="testi-avatar" aria-hidden="true">SC</div>
+                  <div>
+                    <strong>Sarah Chen</strong>
+                    <span>Chief Operations Officer, Meridian Logistics</span>
+                  </div>
                 </div>
-                <div>
-                  <span class="contact-item-label">Email</span>
-                  <a href="mailto:hello@nexus-ai.com" class="contact-item-value">hello@nexus-ai.com</a>
+              </article>
+
+              <article class="testi-card">
+                <div class="testi-quote">"</div>
+                <p>"We evaluated seven AI vendors over six months. Nexus was the only one that delivered a working proof-of-concept in under three weeks, with accuracy that exceeded our internal benchmarks."</p>
+                <div class="testi-author">
+                  <div class="testi-avatar" aria-hidden="true">MR</div>
+                  <div>
+                    <strong>Marcus Reid</strong>
+                    <span>VP of Technology, FinVault Capital</span>
+                  </div>
                 </div>
-              </div>
-              <div class="contact-item">
-                <div class="contact-item-icon" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </article>
+
+              <article class="testi-card">
+                <div class="testi-quote">"</div>
+                <p>"The RoboAssist deployment reduced our nursing staff's non-clinical workload by 38%. Patients noticed the difference. The AI doesn't replace our people — it gives them time back."</p>
+                <div class="testi-author">
+                  <div class="testi-avatar" aria-hidden="true">AL</div>
+                  <div>
+                    <strong>Dr. Amara Lewis</strong>
+                    <span>Director of Innovation, Northridge Health System</span>
+                  </div>
                 </div>
-                <div>
-                  <span class="contact-item-label">Location</span>
-                  <span class="contact-item-value">San Francisco, CA · Remote-first</span>
+              </article>
+
+              <article class="testi-card">
+                <div class="testi-quote">"</div>
+                <p>"Our manufacturing defect rate dropped from 3.2% to 0.18% within 90 days of deploying Nexus Vision. The computer vision system catches what human inspectors physically cannot see at line speed."</p>
+                <div class="testi-author">
+                  <div class="testi-avatar" aria-hidden="true">TK</div>
+                  <div>
+                    <strong>Takeshi Kawamoto</strong>
+                    <span>Plant Director, Orix Semiconductor</span>
+                  </div>
                 </div>
-              </div>
+              </article>
+
             </div>
           </div>
+          <div class="testi-controls" role="group" aria-label="Testimonial navigation">
+            <button class="testi-btn" id="testiPrev" aria-label="Previous testimonial">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <div class="testi-dots" id="testiDots" aria-label="Testimonial indicators"></div>
+            <button class="testi-btn" id="testiNext" aria-label="Next testimonial">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <div class="contact-form-wrapper reveal-up delay-1">
-            <form class="contact-form" id="contact-form" novalidate aria-label="Contact form">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="name">Full Name <span aria-hidden="true" class="required-star">*</span></label>
-                  <input type="text" id="name" name="name" placeholder="Jane Smith" required autocomplete="name" aria-required="true" aria-describedby="name-error" />
-                  <span class="form-error" id="name-error" role="alert" aria-live="polite"></span>
-                </div>
-                <div class="form-group">
-                  <label for="email">Email Address <span aria-hidden="true" class="required-star">*</span></label>
-                  <input type="email" id="email" name="email" placeholder="jane@company.com" required autocomplete="email" aria-required="true" aria-describedby="email-error" />
-                  <span class="form-error" id="email-error" role="alert" aria-live="polite"></span>
-                </div>
+    <!-- ===== CTA ===== -->
+    <section class="cta-section" aria-labelledby="ctaHeading">
+      <div class="cta-bg" aria-hidden="true">
+        <div class="cta-blob cta-blob--1"></div>
+        <div class="cta-blob cta-blob--2"></div>
+      </div>
+      <div class="container">
+        <div class="cta-inner" data-reveal>
+          <div class="section-eyebrow" style="justify-content:center">Take the Next Step</div>
+          <h2 id="ctaHeading">Transform Your Business<br /><span class="text-gradient">with AI</span></h2>
+          <p>Join 120+ enterprises already running on Nexus AI. Our solutions are deployed in under 60 days with dedicated integration support from our engineering team.</p>
+          <div class="cta-buttons">
+            <a href="#contact" class="btn btn--primary btn--large">Schedule Consultation</a>
+            <a href="#solutions" class="btn btn--ghost">View All Solutions</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="contact" id="contact" aria-labelledby="contactHeading">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <div class="section-eyebrow">Get In Touch</div>
+          <h2 id="contactHeading">Start the <span class="text-gradient">Conversation</span></h2>
+          <p>Tell us what you're building. We'll tell you how AI can accelerate it.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-form-wrap" data-reveal>
+            <form class="contact-form" id="contactForm" novalidate aria-label="Contact form">
+              <div class="form-group">
+                <label for="inputName">Full Name</label>
+                <input type="text" id="inputName" name="name" placeholder="Jane Smith" autocomplete="name" required aria-required="true" />
+                <span class="form-error" id="nameError" aria-live="polite"></span>
               </div>
               <div class="form-group">
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject" placeholder="Project inquiry" autocomplete="off" />
+                <label for="inputEmail">Work Email</label>
+                <input type="email" id="inputEmail" name="email" placeholder="jane@company.com" autocomplete="email" required aria-required="true" />
+                <span class="form-error" id="emailError" aria-live="polite"></span>
               </div>
               <div class="form-group">
-                <label for="message">Message <span aria-hidden="true" class="required-star">*</span></label>
-                <textarea id="message" name="message" rows="5" placeholder="Tell us about your project or question…" required aria-required="true" aria-describedby="message-error"></textarea>
-                <span class="form-error" id="message-error" role="alert" aria-live="polite"></span>
+                <label for="inputCompany">Company</label>
+                <input type="text" id="inputCompany" name="company" placeholder="Acme Corporation" autocomplete="organization" />
               </div>
-              <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
-                <span class="btn-label">Send Message</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-              </button>
-              <p class="form-success" id="form-success" aria-live="polite" role="status"></p>
+              <div class="form-group">
+                <label for="inputMessage">Message</label>
+                <textarea id="inputMessage" name="message" rows="5" placeholder="Describe your AI challenge or goals..." required aria-required="true"></textarea>
+                <span class="form-error" id="messageError" aria-live="polite"></span>
+              </div>
+              <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+              <div class="form-success" id="formSuccess" role="alert" aria-live="polite" hidden>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Thank you! Your message has been successfully submitted. We'll be in touch within 24 hours.
+              </div>
             </form>
           </div>
 
+          <div class="contact-info" data-reveal data-delay="200">
+            <div class="info-card glass">
+              <h3>Contact Information</h3>
+              <ul class="info-list">
+                <li>
+                  <div class="info-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  </div>
+                  <div>
+                    <span class="info-label">Email</span>
+                    <a href="mailto:contact@nexusai.io" class="info-value">contact@nexusai.io</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="info-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.15a16 16 0 006.94 6.94l1.49-1.49a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                  </div>
+                  <div>
+                    <span class="info-label">Phone</span>
+                    <a href="tel:+18005NEXUSAI" class="info-value">+1 (800) 5-NEXUSAI</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="info-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  </div>
+                  <div>
+                    <span class="info-label">Headquarters</span>
+                    <span class="info-value">One Nexus Plaza, San Francisco, CA 94105</span>
+                  </div>
+                </li>
+              </ul>
+              <div class="social-links">
+                <a href="#" class="social-link" aria-label="Nexus AI on LinkedIn">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
+                <a href="#" class="social-link" aria-label="Nexus AI on Twitter/X">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+                </a>
+                <a href="#" class="social-link" aria-label="Nexus AI on GitHub">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                </a>
+                <a href="#" class="social-link" aria-label="Nexus AI on YouTube">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#050816"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- ─────────────────────────── FOOTER ─────────────────────────── -->
-  <footer class="site-footer" role="contentinfo">
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
     <div class="container">
       <div class="footer-grid">
-
         <div class="footer-brand">
-          <a href="#home" class="nav-logo footer-logo" aria-label="Nexus AI – Home">
-            <span class="logo-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" stroke="url(#footerLogoGrad)" stroke-width="1.5" fill="none"/>
-                <circle cx="16" cy="16" r="4" fill="url(#footerLogoGrad)"/>
-                <path d="M16 6V12M16 20V26M6 11L11 14M21 18L26 21M6 21L11 18M21 14L26 11" stroke="url(#footerLogoGrad)" stroke-width="1" stroke-linecap="round"/>
-                <defs>
-                  <linearGradient id="footerLogoGrad" x1="4" y1="2" x2="28" y2="30" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#4F46E5"/>
-                    <stop offset="1" stop-color="#06B6D4"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-            </span>
-            <span class="logo-text">Nexus<span class="logo-accent">AI</span></span>
+          <a href="#home" class="nav-logo" aria-label="Nexus AI">
+            <span class="logo-icon">NX</span>
+            <span class="logo-text">Nexus<em>AI</em></span>
           </a>
-          <p class="footer-tagline">Building intelligence for a world that can't wait.</p>
-          <div class="footer-social" aria-label="Social media links">
-            <a href="#" aria-label="GitHub" class="social-link">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-            </a>
-            <a href="#" aria-label="LinkedIn" class="social-link">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-            </a>
-            <a href="#" aria-label="Twitter / X" class="social-link">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a href="#" aria-label="YouTube" class="social-link">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-2.75 12.64 12.64 0 0 0-8.64 0A4.83 4.83 0 0 1 3.41 6.69 49.36 49.36 0 0 0 3 12a49.36 49.36 0 0 0 .41 5.31 4.83 4.83 0 0 1 3.77 2.75 12.64 12.64 0 0 0 8.64 0 4.83 4.83 0 0 1 3.77-2.75A49.36 49.36 0 0 0 21 12a49.36 49.36 0 0 0-.41-5.31zM9.75 15.02V8.98L15.5 12z"/></svg>
-            </a>
+          <p>Pioneering next-generation artificial intelligence systems that redefine what machines can understand, decide, and create.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+            <a href="#" class="social-link" aria-label="Twitter"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a>
+            <a href="#" class="social-link" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></a>
           </div>
         </div>
-
-        <nav class="footer-links-col" aria-label="Quick links">
-          <h4 class="footer-col-title">Company</h4>
+        <nav class="footer-col" aria-label="Solutions footer links">
+          <h4>Solutions</h4>
           <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#solutions">AI Solutions</a></li>
-            <li><a href="#robotics">Robotics</a></li>
-            <li><a href="#portfolio">Projects</a></li>
-            <li><a href="#blog">Blog</a></li>
-          </ul>
-        </nav>
-
-        <nav class="footer-links-col" aria-label="Solutions links">
-          <h4 class="footer-col-title">Solutions</h4>
-          <ul>
+            <li><a href="#solutions">Predictive Analytics</a></li>
             <li><a href="#solutions">Machine Learning</a></li>
             <li><a href="#solutions">Computer Vision</a></li>
-            <li><a href="#solutions">Generative AI</a></li>
-            <li><a href="#solutions">NLP</a></li>
-            <li><a href="#robotics">Smart Automation</a></li>
+            <li><a href="#solutions">NLP Platform</a></li>
+            <li><a href="#solutions">Smart Automation</a></li>
           </ul>
         </nav>
-
-        <div class="footer-newsletter">
-          <h4 class="footer-col-title">Stay Updated</h4>
-          <p>Get our latest research and product news — no spam, unsubscribe anytime.</p>
-          <form class="newsletter-form" aria-label="Newsletter subscription" novalidate>
-            <div class="newsletter-row">
-              <label for="newsletter-email" class="visually-hidden">Email address for newsletter</label>
-              <input type="email" id="newsletter-email" name="newsletter-email" placeholder="your@email.com" aria-label="Email for newsletter" autocomplete="email" />
-              <button type="submit" class="btn btn-primary btn-sm" aria-label="Subscribe to newsletter">Subscribe</button>
-            </div>
-          </form>
-        </div>
-
+        <nav class="footer-col" aria-label="Company footer links">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About Nexus AI</a></li>
+            <li><a href="#robotics">Robotics</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#timeline">Roadmap</a></li>
+            <li><a href="#contact">Careers</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-col" aria-label="Resources footer links">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#contact">Documentation</a></li>
+            <li><a href="#contact">API Reference</a></li>
+            <li><a href="#contact">Research Papers</a></li>
+            <li><a href="#contact">Case Studies</a></li>
+            <li><a href="#contact">Support</a></li>
+          </ul>
+        </nav>
       </div>
-
       <div class="footer-bottom">
-        <p>© <span id="current-year"></span> Nexus AI, Inc. All rights reserved.</p>
+        <p>© 2026 Nexus AI. All Rights Reserved.</p>
         <div class="footer-legal">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
-          <a href="#">Cookie Settings</a>
+          <a href="#">Cookie Policy</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- Back to top -->
-  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
-  </button>
+  <!-- Demo Modal -->
+  <div class="modal" id="demoModal" role="dialog" aria-modal="true" aria-label="Watch Demo" hidden>
+    <div class="modal-backdrop" onclick="closeDemoModal()"></div>
+    <div class="modal-content glass">
+      <button class="modal-close" onclick="closeDemoModal()" aria-label="Close demo modal">✕</button>
+      <h3>Nexus AI — Platform Demo</h3>
+      <div class="modal-video-placeholder">
+        <div class="play-btn-large" aria-hidden="true">▶</div>
+        <p>Interactive demo coming soon.<br />Schedule a live walkthrough with our team.</p>
+        <a href="#contact" class="btn btn--primary" onclick="closeDemoModal()">Book a Demo</a>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

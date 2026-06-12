@@ -1,564 +1,469 @@
-/* ═══════════════════════════════════════════════════════════════
-   NEXUS AI – script.js
-   Features: Star canvas, typing animation, scroll reveal,
-   counter animation, mobile nav, dark mode, form validation,
-   back-to-top, active nav highlighting
-═══════════════════════════════════════════════════════════════ */
+/* ============================================================
+   NEXUS AI — script.js
+   ============================================================ */
 
-"use strict";
+'use strict';
 
-// ────────────────────────────────────────────────────────────────
-// 1. DOM Ready
-// ────────────────────────────────────────────────────────────────
-document.addEventListener("DOMContentLoaded", () => {
-  initTheme();
-  initStarCanvas();
-  initTypingAnimation();
-  initMobileNav();
-  initScrollBehavior();
-  initScrollReveal();
-  initCounterAnimation();
-  initFormValidation();
-  initBackToTop();
-  initActiveNavHighlight();
-  initCurrentYear();
-  initNewsletterForm();
-  initCardKeyboard();
-});
-
-// ────────────────────────────────────────────────────────────────
-// 2. Theme Toggle (Dark / Light)
-// ────────────────────────────────────────────────────────────────
-function initTheme() {
-  const toggle = document.getElementById("theme-toggle");
-  if (!toggle) return;
-
-  // Persist preference; default to dark
-  const saved = localStorage.getItem("nexus-theme");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const theme = saved || (prefersDark ? "dark" : "light");
-
-  applyTheme(theme);
-
-  toggle.addEventListener("click", () => {
-    const current = document.documentElement.getAttribute("data-theme") || "dark";
-    const next = current === "dark" ? "light" : "dark";
-    applyTheme(next);
-    localStorage.setItem("nexus-theme", next);
+/* ─── PAGE LOADER ────────────────────────────────────────── */
+(function initLoader() {
+  const loader = document.getElementById('pageLoader');
+  if (!loader) return;
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      loader.classList.add('hidden');
+      loader.addEventListener('transitionend', () => loader.remove(), { once: true });
+    }, 1800);
   });
-}
+})();
 
-function applyTheme(theme) {
-  document.documentElement.setAttribute("data-theme", theme);
-  const toggle = document.getElementById("theme-toggle");
-  if (toggle) {
-    toggle.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
-    toggle.setAttribute("aria-label", theme === "dark" ? "Switch to light mode" : "Switch to dark mode");
-  }
-}
-
-// ────────────────────────────────────────────────────────────────
-// 3. Star Canvas (hero background)
-// ────────────────────────────────────────────────────────────────
-function initStarCanvas() {
-  const canvas = document.getElementById("starCanvas");
+/* ─── STARFIELD CANVAS ───────────────────────────────────── */
+(function initStarfield() {
+  const canvas = document.getElementById('starfield');
   if (!canvas) return;
+  const ctx = canvas.getContext('2d');
 
-  // Skip if reduced motion preference
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    canvas.style.display = "none";
-    return;
-  }
-
-  const ctx = canvas.getContext("2d");
-  let width, height, stars, mouse = { x: 0, y: 0 };
-  let animFrame;
+  let W, H, stars = [];
+  const STAR_COUNT = 200;
 
   function resize() {
-    width = canvas.width = canvas.offsetWidth;
-    height = canvas.height = canvas.offsetHeight;
-    createStars();
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
   }
 
-  function createStars() {
-    const count = Math.floor((width * height) / 8000);
-    stars = Array.from({ length: Math.min(count, 200) }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      r: Math.random() * 1.4 + 0.2,
-      vx: (Math.random() - 0.5) * 0.12,
-      vy: (Math.random() - 0.5) * 0.12,
-      alpha: Math.random() * 0.7 + 0.2,
-      twinkleSpeed: Math.random() * 0.01 + 0.003,
-      twinklePhase: Math.random() * Math.PI * 2,
-    }));
+  function createStar() {
+    return {
+      x:    Math.random() * W,
+      y:    Math.random() * H,
+      r:    Math.random() * 1.5 + 0.3,
+      vx:   (Math.random() - 0.5) * 0.12,
+      vy:   (Math.random() - 0.5) * 0.12,
+      alpha: Math.random() * 0.6 + 0.2,
+      dalpha: (Math.random() * 0.005 + 0.002) * (Math.random() < 0.5 ? 1 : -1),
+    };
   }
 
-  function draw(timestamp) {
-    ctx.clearRect(0, 0, width, height);
+  function initStars() {
+    stars = Array.from({ length: STAR_COUNT }, createStar);
+  }
 
-    stars.forEach((s) => {
-      // Subtle mouse parallax
-      const dx = (mouse.x / width - 0.5) * 0.4;
-      const dy = (mouse.y / height - 0.5) * 0.4;
+  // Shooting star
+  let shooters = [];
+  function spawnShooter() {
+    shooters.push({
+      x:  Math.random() * W,
+      y:  Math.random() * H * 0.5,
+      vx: 4 + Math.random() * 4,
+      vy: 2 + Math.random() * 2,
+      len: 80 + Math.random() * 80,
+      alpha: 1,
+    });
+  }
+  setInterval(spawnShooter, 4000);
 
-      s.x += s.vx + dx * 0.015;
-      s.y += s.vy + dy * 0.015;
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
 
-      // Wrap around
-      if (s.x < 0) s.x = width;
-      if (s.x > width) s.x = 0;
-      if (s.y < 0) s.y = height;
-      if (s.y > height) s.y = 0;
-
-      // Twinkle
-      const twinkle = 0.5 + 0.5 * Math.sin(timestamp * s.twinkleSpeed + s.twinklePhase);
-      const alpha = s.alpha * (0.6 + 0.4 * twinkle);
+    // Draw static stars
+    stars.forEach(s => {
+      s.x += s.vx; s.y += s.vy;
+      s.alpha += s.dalpha;
+      if (s.alpha <= 0.1 || s.alpha >= 0.9) s.dalpha *= -1;
+      if (s.x < 0) s.x = W; if (s.x > W) s.x = 0;
+      if (s.y < 0) s.y = H; if (s.y > H) s.y = 0;
 
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${s.r > 1.2 ? "180,190,255" : "140,160,220"},${alpha})`;
+      ctx.fillStyle = `rgba(200,220,255,${s.alpha})`;
       ctx.fill();
     });
 
-    animFrame = requestAnimationFrame(draw);
+    // Draw shooters
+    shooters = shooters.filter(s => s.alpha > 0.02);
+    shooters.forEach(s => {
+      s.x += s.vx; s.y += s.vy;
+      s.alpha -= 0.018;
+      const grad = ctx.createLinearGradient(s.x - s.vx * s.len / s.vx, s.y - s.vy * s.len / s.vx, s.x, s.y);
+      grad.addColorStop(0, `rgba(0,229,255,0)`);
+      grad.addColorStop(1, `rgba(0,229,255,${s.alpha})`);
+      ctx.beginPath();
+      ctx.moveTo(s.x - s.vx * 15, s.y - s.vy * 15);
+      ctx.lineTo(s.x, s.y);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    });
+
+    requestAnimationFrame(draw);
   }
 
-  // Resize observer
-  const ro = new ResizeObserver(resize);
-  ro.observe(canvas);
   resize();
+  initStars();
+  draw();
 
-  // Mouse tracking for parallax
-  document.addEventListener("mousemove", (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => { resize(); initStars(); }, 200);
   });
+})();
 
-  // Start animation
-  animFrame = requestAnimationFrame(draw);
-
-  // Pause when off-screen (performance)
-  const heroSection = document.getElementById("home");
-  if (heroSection && "IntersectionObserver" in window) {
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            if (!animFrame) animFrame = requestAnimationFrame(draw);
-          } else {
-            cancelAnimationFrame(animFrame);
-            animFrame = null;
-          }
-        });
-      },
-      { threshold: 0 }
-    );
-    obs.observe(heroSection);
-  }
-}
-
-// ────────────────────────────────────────────────────────────────
-// 4. Typing Animation
-// ────────────────────────────────────────────────────────────────
-function initTypingAnimation() {
-  const el = document.getElementById("typed-text");
+/* ─── TYPING ANIMATION ───────────────────────────────────── */
+(function initTyping() {
+  const el = document.getElementById('typingText');
   if (!el) return;
 
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    el.textContent = "Artificial Intelligence";
-    return;
-  }
-
-  const phrases = [
-    "Artificial Intelligence",
-    "Machine Learning",
-    "Computer Vision",
-    "Generative AI",
-    "Neural Networks",
+  const words = [
+    'Artificial Intelligence',
+    'Machine Learning',
+    'Smart Robotics',
+    'Future Technologies',
+    'Intelligent Automation',
+    'Predictive Analytics',
   ];
 
-  let phraseIdx = 0, charIdx = 0, deleting = false;
-  const TYPE_SPEED = 80, DELETE_SPEED = 40, PAUSE = 2000;
+  let wordIdx = 0, charIdx = 0, deleting = false;
+  const DELAY_WRITE = 70, DELAY_DELETE = 40, DELAY_PAUSE = 2000;
 
-  function tick() {
-    const phrase = phrases[phraseIdx];
-
+  function type() {
+    const word = words[wordIdx];
     if (!deleting) {
-      el.textContent = phrase.slice(0, ++charIdx);
-      if (charIdx === phrase.length) {
+      el.textContent = word.slice(0, ++charIdx);
+      if (charIdx === word.length) {
         deleting = true;
-        setTimeout(tick, PAUSE);
+        setTimeout(type, DELAY_PAUSE);
         return;
       }
     } else {
-      el.textContent = phrase.slice(0, --charIdx);
+      el.textContent = word.slice(0, --charIdx);
       if (charIdx === 0) {
         deleting = false;
-        phraseIdx = (phraseIdx + 1) % phrases.length;
+        wordIdx = (wordIdx + 1) % words.length;
       }
     }
-    setTimeout(tick, deleting ? DELETE_SPEED : TYPE_SPEED);
+    setTimeout(type, deleting ? DELAY_DELETE : DELAY_WRITE);
   }
 
-  // Start after hero headline animates in
-  setTimeout(tick, 900);
-}
+  type();
+})();
 
-// ────────────────────────────────────────────────────────────────
-// 5. Mobile Navigation
-// ────────────────────────────────────────────────────────────────
-function initMobileNav() {
-  const hamburger = document.getElementById("hamburger");
-  const navLinks = document.getElementById("nav-links");
-  if (!hamburger || !navLinks) return;
+/* ─── NAVBAR ─────────────────────────────────────────────── */
+(function initNavbar() {
+  const navbar    = document.getElementById('navbar');
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  if (!navbar) return;
 
-  function openMenu() {
-    navLinks.classList.add("open");
-    hamburger.setAttribute("aria-expanded", "true");
-    // Trap focus within menu
-    navLinks.querySelector("a")?.focus();
-  }
+  // Scroll shrink
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+    document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
 
-  function closeMenu() {
-    navLinks.classList.remove("open");
-    hamburger.setAttribute("aria-expanded", "false");
-  }
+  // Hamburger
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
 
-  hamburger.addEventListener("click", () => {
-    const isOpen = navLinks.classList.contains("open");
-    isOpen ? closeMenu() : openMenu();
-  });
-
-  // Close when nav link is clicked
-  navLinks.querySelectorAll(".nav-link").forEach((link) => {
-    link.addEventListener("click", closeMenu);
-  });
-
-  // Close on outside click
-  document.addEventListener("click", (e) => {
-    if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-      closeMenu();
-    }
-  });
-
-  // Close on Escape
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && navLinks.classList.contains("open")) {
-      closeMenu();
-      hamburger.focus();
-    }
-  });
-}
-
-// ────────────────────────────────────────────────────────────────
-// 6. Scroll Behavior (header + smooth scroll)
-// ────────────────────────────────────────────────────────────────
-function initScrollBehavior() {
-  const header = document.getElementById("site-header");
-  if (!header) return;
-
-  let ticking = false;
-
-  window.addEventListener("scroll", () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        header.classList.toggle("scrolled", window.scrollY > 20);
-        ticking = false;
+    // Close on link click
+    navLinks.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
       });
-      ticking = true;
+    });
+  }
+
+  // Active link highlighting on scroll
+  const sections = document.querySelectorAll('section[id], header[id]');
+  const links    = document.querySelectorAll('.nav-link[data-section]');
+
+  function updateActive() {
+    const scrollY = window.scrollY + 100;
+    sections.forEach(section => {
+      const top    = section.offsetTop;
+      const bottom = top + section.offsetHeight;
+      if (scrollY >= top && scrollY < bottom) {
+        const id = section.getAttribute('id');
+        links.forEach(l => {
+          l.classList.toggle('active', l.dataset.section === id);
+        });
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateActive, { passive: true });
+  updateActive();
+})();
+
+/* ─── SMOOTH SCROLL ──────────────────────────────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (!target) return;
+    e.preventDefault();
+    const offset = document.getElementById('navbar').offsetHeight + 8;
+    window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+  });
+});
+
+/* ─── BACK TO TOP ────────────────────────────────────────── */
+(function initBackToTop() {
+  const btn = document.getElementById('backToTop');
+  if (!btn) return;
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+})();
+
+/* ─── SCROLL REVEAL ──────────────────────────────────────── */
+(function initReveal() {
+  const items = document.querySelectorAll('[data-reveal]');
+  if (!items.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const delay = parseInt(entry.target.dataset.delay || 0);
+      setTimeout(() => entry.target.classList.add('revealed'), delay);
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  items.forEach(el => observer.observe(el));
+})();
+
+/* ─── ANIMATED COUNTERS ──────────────────────────────────── */
+(function initCounters() {
+  const counters = document.querySelectorAll('.stat-number[data-count]');
+  if (!counters.length) return;
+
+  function easeOutQuad(t) { return t * (2 - t); }
+
+  function animateCounter(el) {
+    const target  = parseInt(el.dataset.count);
+    const suffix  = el.dataset.suffix || '';
+    const duration = 2000;
+    const start    = performance.now();
+
+    function update(now) {
+      const elapsed  = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const value    = Math.floor(easeOutQuad(progress) * target);
+      el.textContent = value + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+      else el.textContent = target + suffix;
     }
+    requestAnimationFrame(update);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(el => observer.observe(el));
+})();
+
+/* ─── TESTIMONIALS CAROUSEL ──────────────────────────────── */
+(function initTestimonials() {
+  const track   = document.getElementById('testiTrack');
+  const prevBtn = document.getElementById('testiPrev');
+  const nextBtn = document.getElementById('testiNext');
+  const dotsWrap = document.getElementById('testiDots');
+  if (!track) return;
+
+  const cards  = track.querySelectorAll('.testi-card');
+  const total  = cards.length;
+  let current  = 0;
+  let autoPlay;
+
+  // Build dots
+  cards.forEach((_, i) => {
+    const btn = document.createElement('button');
+    btn.className  = 'testi-dot' + (i === 0 ? ' active' : '');
+    btn.setAttribute('aria-label', `Go to testimonial ${i + 1}`);
+    btn.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(btn);
   });
 
-  // Smooth scroll for anchor links (polyfill for older browsers)
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", (e) => {
-      const target = document.querySelector(anchor.getAttribute("href"));
-      if (!target) return;
-      e.preventDefault();
-      const offset = target.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top: offset, behavior: "smooth" });
-    });
-  });
-}
-
-// ────────────────────────────────────────────────────────────────
-// 7. Scroll Reveal (IntersectionObserver)
-// ────────────────────────────────────────────────────────────────
-function initScrollReveal() {
-  if (!("IntersectionObserver" in window)) {
-    // Fallback: show everything
-    document.querySelectorAll(".reveal-fade, .reveal-up").forEach((el) => {
-      el.classList.add("revealed");
-    });
-    return;
+  function goTo(idx) {
+    current = (idx + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dotsWrap.querySelectorAll('.testi-dot').forEach((d, i) =>
+      d.classList.toggle('active', i === current)
+    );
   }
 
-  const reducer = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  if (reducer) {
-    document.querySelectorAll(".reveal-fade, .reveal-up").forEach((el) => {
-      el.classList.add("revealed");
-    });
-    return;
+  function startAuto() {
+    stopAuto();
+    autoPlay = setInterval(() => goTo(current + 1), 5500);
   }
+  function stopAuto() { clearInterval(autoPlay); }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("revealed");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-  );
+  prevBtn.addEventListener('click', () => { goTo(current - 1); startAuto(); });
+  nextBtn.addEventListener('click', () => { goTo(current + 1); startAuto(); });
 
-  document.querySelectorAll(".reveal-fade, .reveal-up").forEach((el) => {
-    observer.observe(el);
-  });
-}
+  track.parentElement.addEventListener('mouseenter', stopAuto);
+  track.parentElement.addEventListener('mouseleave', startAuto);
 
-// ────────────────────────────────────────────────────────────────
-// 8. Counter Animation
-// ────────────────────────────────────────────────────────────────
-function initCounterAnimation() {
-  if (!("IntersectionObserver" in window)) return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    document.querySelectorAll(".counter").forEach((el) => {
-      const target = parseInt(el.dataset.target, 10);
-      const suffix = el.dataset.suffix || "";
-      el.textContent = formatNumber(target) + suffix;
-    });
-    return;
-  }
+  // Touch / swipe
+  let startX = 0;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) { goTo(diff > 0 ? current + 1 : current - 1); startAuto(); }
+  }, { passive: true });
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.5 }
-  );
+  startAuto();
+})();
 
-  document.querySelectorAll(".counter").forEach((el) => observer.observe(el));
-}
-
-function animateCounter(el) {
-  const target = parseInt(el.dataset.target, 10);
-  const suffix = el.dataset.suffix || "";
-  const duration = 2000;
-  const start = performance.now();
-
-  function step(timestamp) {
-    const elapsed = timestamp - start;
-    const progress = Math.min(elapsed / duration, 1);
-    // Ease out cubic
-    const eased = 1 - Math.pow(1 - progress, 3);
-    const value = Math.round(eased * target);
-    el.textContent = formatNumber(value) + suffix;
-    if (progress < 1) requestAnimationFrame(step);
-  }
-
-  requestAnimationFrame(step);
-}
-
-function formatNumber(n) {
-  if (n >= 1000) return (n / 1000).toFixed(0) + "K";
-  return n.toString();
-}
-
-// ────────────────────────────────────────────────────────────────
-// 9. Form Validation
-// ────────────────────────────────────────────────────────────────
-function initFormValidation() {
-  const form = document.getElementById("contact-form");
+/* ─── CONTACT FORM VALIDATION ────────────────────────────── */
+(function initContactForm() {
+  const form       = document.getElementById('contactForm');
+  const successBox = document.getElementById('formSuccess');
   if (!form) return;
 
-  const submitBtn = document.getElementById("submit-btn");
-  const successMsg = document.getElementById("form-success");
+  function setError(inputId, errorId, msg) {
+    const inp = document.getElementById(inputId);
+    const err = document.getElementById(errorId);
+    if (!inp || !err) return;
+    err.textContent = msg;
+    inp.classList.toggle('error', !!msg);
+  }
 
-  // Live validation on blur
-  form.querySelectorAll("input, textarea").forEach((field) => {
-    field.addEventListener("blur", () => validateField(field));
-    field.addEventListener("input", () => {
-      if (field.classList.contains("error")) validateField(field);
+  function clearErrors() {
+    ['nameError', 'emailError', 'messageError'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = '';
     });
-  });
+    ['inputName', 'inputEmail', 'inputMessage'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('error');
+    });
+  }
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
+  function validate() {
+    clearErrors();
     let valid = true;
 
-    form.querySelectorAll("[required]").forEach((field) => {
-      if (!validateField(field)) valid = false;
-    });
+    const name    = document.getElementById('inputName');
+    const email   = document.getElementById('inputEmail');
+    const message = document.getElementById('inputMessage');
 
-    if (!valid) {
-      // Focus first error
-      form.querySelector(".error")?.focus();
-      return;
+    if (!name.value.trim()) {
+      setError('inputName', 'nameError', 'Please enter your full name.');
+      valid = false;
     }
 
-    // Simulate async submit
-    submitBtn.disabled = true;
-    submitBtn.querySelector(".btn-label").textContent = "Sending…";
-
-    setTimeout(() => {
-      submitBtn.disabled = false;
-      submitBtn.querySelector(".btn-label").textContent = "Send Message";
-      successMsg.textContent = "✓ Message sent! We'll get back to you within one business day.";
-      form.reset();
-      setTimeout(() => (successMsg.textContent = ""), 6000);
-    }, 1500);
-  });
-}
-
-function validateField(field) {
-  const errorEl = document.getElementById(field.id + "-error");
-  let message = "";
-
-  if (field.required && !field.value.trim()) {
-    message = `${getLabel(field)} is required.`;
-  } else if (field.type === "email" && field.value.trim()) {
     const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRe.test(field.value.trim())) {
-      message = "Please enter a valid email address.";
+    if (!email.value.trim()) {
+      setError('inputEmail', 'emailError', 'Please enter your email address.');
+      valid = false;
+    } else if (!emailRe.test(email.value.trim())) {
+      setError('inputEmail', 'emailError', 'Please enter a valid email address.');
+      valid = false;
     }
-  } else if (field.tagName === "TEXTAREA" && field.value.trim().length < 10 && field.value.trim()) {
-    message = "Message must be at least 10 characters.";
+
+    if (!message.value.trim() || message.value.trim().length < 10) {
+      setError('inputMessage', 'messageError', 'Message must be at least 10 characters.');
+      valid = false;
+    }
+
+    return valid;
   }
 
-  field.classList.toggle("error", !!message);
-  if (errorEl) errorEl.textContent = message;
-  field.setAttribute("aria-invalid", message ? "true" : "false");
-
-  return !message;
-}
-
-function getLabel(field) {
-  const label = document.querySelector(`label[for="${field.id}"]`);
-  if (!label) return "This field";
-  // Strip the asterisk child text
-  return label.childNodes[0]?.textContent?.trim() || "This field";
-}
-
-// ────────────────────────────────────────────────────────────────
-// 10. Back to Top
-// ────────────────────────────────────────────────────────────────
-function initBackToTop() {
-  const btn = document.getElementById("back-to-top");
-  if (!btn) return;
-
-  let ticking = false;
-  window.addEventListener("scroll", () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        btn.classList.toggle("visible", window.scrollY > 400);
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
-
-  btn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    // Return focus to top of page
-    setTimeout(() => document.getElementById("site-header")?.focus(), 600);
-  });
-}
-
-// ────────────────────────────────────────────────────────────────
-// 11. Active Nav Highlighting
-// ────────────────────────────────────────────────────────────────
-function initActiveNavHighlight() {
-  const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll(".nav-link");
-  if (!sections.length || !navLinks.length) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute("id");
-          navLinks.forEach((link) => {
-            link.classList.toggle(
-              "active",
-              link.getAttribute("href") === `#${id}`
-            );
-          });
-        }
-      });
-    },
-    {
-      rootMargin: "-30% 0px -60% 0px",
-      threshold: 0,
-    }
-  );
-
-  sections.forEach((s) => observer.observe(s));
-}
-
-// ────────────────────────────────────────────────────────────────
-// 12. Current Year in Footer
-// ────────────────────────────────────────────────────────────────
-function initCurrentYear() {
-  const el = document.getElementById("current-year");
-  if (el) el.textContent = new Date().getFullYear();
-}
-
-// ────────────────────────────────────────────────────────────────
-// 13. Newsletter Form (simple feedback)
-// ────────────────────────────────────────────────────────────────
-function initNewsletterForm() {
-  const form = document.querySelector(".newsletter-form");
-  if (!form) return;
-
-  form.addEventListener("submit", (e) => {
+  form.addEventListener('submit', e => {
     e.preventDefault();
-    const input = form.querySelector("input[type='email']");
-    const btn = form.querySelector("button");
-    if (!input || !input.value.trim()) return;
+    if (!validate()) return;
 
-    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRe.test(input.value.trim())) {
-      input.style.borderColor = "var(--color-error)";
-      setTimeout(() => (input.style.borderColor = ""), 2000);
-      return;
-    }
-
-    btn.textContent = "Subscribed!";
+    const btn = form.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending…';
     btn.disabled = true;
-    input.value = "";
-    input.disabled = true;
+
     setTimeout(() => {
-      btn.textContent = "Subscribe";
+      form.reset();
+      clearErrors();
+      successBox.removeAttribute('hidden');
+      btn.textContent = 'Send Message';
       btn.disabled = false;
-      input.disabled = false;
-    }, 4000);
+      successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      setTimeout(() => successBox.setAttribute('hidden', ''), 8000);
+    }, 1200);
   });
+})();
+
+/* ─── DEMO MODAL ─────────────────────────────────────────── */
+function openDemoModal() {
+  const modal = document.getElementById('demoModal');
+  if (!modal) return;
+  modal.removeAttribute('hidden');
+  document.body.style.overflow = 'hidden';
+  modal.querySelector('.modal-close').focus();
 }
 
-// ────────────────────────────────────────────────────────────────
-// 14. Keyboard accessibility for interactive cards
-// ────────────────────────────────────────────────────────────────
-function initCardKeyboard() {
-  // Cards with tabindex="0" should activate on Enter/Space
-  document.querySelectorAll(
-    ".solution-card[tabindex], .project-card[tabindex], .robotics-card[tabindex], .blog-card[tabindex]"
-  ).forEach((card) => {
-    card.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        // Find primary CTA link and follow it
-        const link = card.querySelector("a");
-        if (link) link.click();
-      }
+function closeDemoModal() {
+  const modal = document.getElementById('demoModal');
+  if (!modal) return;
+  modal.setAttribute('hidden', '');
+  document.body.style.overflow = '';
+}
+
+// ESC to close modal
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeDemoModal();
+});
+
+/* ─── SOLUTION CARD TILT (subtle on desktop) ─────────────── */
+(function initCardTilt() {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+
+  document.querySelectorAll('.sol-card, .proj-card, .rob-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x    = (e.clientX - rect.left) / rect.width  - 0.5;
+      const y    = (e.clientY - rect.top)  / rect.height - 0.5;
+      card.style.transform = `translateY(-6px) rotateX(${-y * 4}deg) rotateY(${x * 4}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
     });
   });
-}
+})();
+
+/* ─── TIMELINE PROGRESS HIGHLIGHT ───────────────────────── */
+(function initTimeline() {
+  const items = document.querySelectorAll('.tl-item');
+  if (!items.length) return;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelector('.tl-content').style.borderColor = 'rgba(0,229,255,0.35)';
+      }
+    });
+  }, { threshold: 0.5 });
+
+  items.forEach(item => observer.observe(item));
+})();
+
+/* ─── GLOW FOLLOW (hero area only) ──────────────────────── */
+(function initGlowFollow() {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  hero.addEventListener('mousemove', e => {
+    const x = (e.clientX / window.innerWidth)  * 100;
+    const y = (e.clientY / window.innerHeight) * 100;
+    hero.style.setProperty('--mx', `${x}%`);
+    hero.style.setProperty('--my', `${y}%`);
+  });
+})();
