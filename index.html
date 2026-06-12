@@ -33,7 +33,7 @@
   </div>
 
   <!-- Back to Top -->
-  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="18 15 12 9 6 15"></polyline>
     </svg>
@@ -54,8 +54,8 @@
         <li><a href="#stats" class="nav-link" data-section="stats">Statistics</a></li>
         <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
       </ul>
-      <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
-      <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="navLinks">
+      <button type="button" class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+      <button type="button" class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
     </nav>
@@ -89,14 +89,14 @@
               Explore Solutions
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <button class="btn btn--ghost" onclick="openDemoModal()">
+            <button type="button" class="btn btn--ghost" onclick="openDemoModal()">
               <span class="play-icon" aria-hidden="true">▶</span>
               Watch Demo
             </button>
           </div>
         </div>
 
-        <figure class="hero-illustration" aria-label="Nexus AI humanoid head illustration">
+        <figure class="hero-illustration" aria-label="Nexus AI humanoid head illustration" role="figure">
           <div class="ai-head-wrap">
             <svg class="ai-head" viewBox="0 0 360 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Futuristic AI head">
               <defs>
@@ -555,7 +555,7 @@
               <h3>Nexus Vision</h3>
               <p>AI-powered visual intelligence platform processing 4K video streams in real time. Deployed across 43 smart city networks for crowd analytics, object classification, and safety monitoring.</p>
               <div class="proj-tags"><span>Computer Vision</span><span>Edge AI</span><span>Smart Cities</span></div>
-              <button class="btn btn--outline">Learn More</button>
+              <button type="button" class="btn btn--outline">Learn More</button>
             </div>
           </article>
 
@@ -596,7 +596,7 @@
               <h3>AutoMind</h3>
               <p>Enterprise automation ecosystem that maps, optimizes, and autonomously executes complex business processes. Serves Fortune 500 clients with over 18 million automated decisions per day.</p>
               <div class="proj-tags"><span>RPA</span><span>AI Orchestration</span><span>Enterprise</span></div>
-              <button class="btn btn--outline">Learn More</button>
+              <button type="button" class="btn btn--outline">Learn More</button>
             </div>
           </article>
 
@@ -631,7 +631,7 @@
               <h3>NeuroLink Analytics</h3>
               <p>Real-time predictive analytics engine delivering sub-second insights from streaming data at petabyte scale. Powers trading desks, supply chains, and risk management platforms globally.</p>
               <div class="proj-tags"><span>Predictive</span><span>Streaming</span><span>Finance</span></div>
-              <button class="btn btn--outline">Learn More</button>
+              <button type="button" class="btn btn--outline">Learn More</button>
             </div>
           </article>
 
@@ -667,7 +667,7 @@
               <h3>RoboAssist</h3>
               <p>Autonomous robotic support network for healthcare, logistics, and hospitality. Fleet of 200+ units operating across 15 hospital networks, reducing staff burden by up to 40% on routine tasks.</p>
               <div class="proj-tags"><span>Autonomous</span><span>Fleet Management</span><span>Healthcare</span></div>
-              <button class="btn btn--outline">Learn More</button>
+              <button type="button" class="btn btn--outline">Learn More</button>
             </div>
           </article>
 
@@ -703,6 +703,55 @@
             <div class="stat-number" data-count="24" data-suffix="/7">0</div>
             <div class="stat-label">AI Monitoring</div>
             <div class="stat-sub">Always-on systems</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== AI SKILLS / PROGRESS BARS (Enhancement 3: CSS animated progress bars) ===== -->
+    <section class="skills-section" id="skills" aria-labelledby="skillsHeading">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <div class="section-eyebrow">Core Competencies</div>
+          <h2 id="skillsHeading">AI Technology <span class="text-gradient">Proficiency</span></h2>
+          <p>Our platform benchmarks span the full stack of modern AI research and engineering.</p>
+        </div>
+        <div class="skills-grid" data-reveal>
+          <div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-label"><span>Natural Language Processing</span><span>96%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="96"></div></div>
+            </div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-label"><span>Computer Vision</span><span>93%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="93"></div></div>
+            </div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-label"><span>Predictive Analytics</span><span>98%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="98"></div></div>
+            </div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-label"><span>Reinforcement Learning</span><span>88%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+            </div>
+          </div>
+          <div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-label"><span>Robotics &amp; Autonomous Systems</span><span>91%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="91"></div></div>
+            </div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-label"><span>Edge AI &amp; Embedded ML</span><span>85%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+            </div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-label"><span>MLOps &amp; Model Deployment</span><span>94%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="94"></div></div>
+            </div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-label"><span>Explainable AI (XAI)</span><span>89%</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill" data-width="89"></div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -820,11 +869,11 @@
             </div>
           </div>
           <div class="testi-controls" role="group" aria-label="Testimonial navigation">
-            <button class="testi-btn" id="testiPrev" aria-label="Previous testimonial">
+            <button type="button" class="testi-btn" id="testiPrev" aria-label="Previous testimonial">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
             </button>
             <div class="testi-dots" id="testiDots" aria-label="Testimonial indicators"></div>
-            <button class="testi-btn" id="testiNext" aria-label="Next testimonial">
+            <button type="button" class="testi-btn" id="testiNext" aria-label="Next testimonial">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </button>
           </div>
@@ -840,7 +889,7 @@
       </div>
       <div class="container">
         <div class="cta-inner" data-reveal>
-          <div class="section-eyebrow" style="justify-content:center">Take the Next Step</div>
+          <div class="section-eyebrow section-eyebrow--center">Take the Next Step</div>
           <h2 id="ctaHeading">Transform Your Business<br /><span class="text-gradient">with AI</span></h2>
           <p>Join 120+ enterprises already running on Nexus AI. Our solutions are deployed in under 60 days with dedicated integration support from our engineering team.</p>
           <div class="cta-buttons">
@@ -1005,7 +1054,7 @@
   <div class="modal" id="demoModal" role="dialog" aria-modal="true" aria-label="Watch Demo" hidden>
     <div class="modal-backdrop" onclick="closeDemoModal()"></div>
     <div class="modal-content glass">
-      <button class="modal-close" onclick="closeDemoModal()" aria-label="Close demo modal">✕</button>
+      <button type="button" class="modal-close" onclick="closeDemoModal()" aria-label="Close demo modal">✕</button>
       <h3>Nexus AI — Platform Demo</h3>
       <div class="modal-video-placeholder">
         <div class="play-btn-large" aria-hidden="true">▶</div>
@@ -1014,6 +1063,12 @@
       </div>
     </div>
   </div>
+
+  <!-- Enhancement 2: Dark/Light Theme Toggle -->
+  <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme" title="Toggle theme">🌙</button>
+
+  <!-- Enhancement 4: Toast notification container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="false"></div>
 
   <script src="script.js"></script>
 </body>

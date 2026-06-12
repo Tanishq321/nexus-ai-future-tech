@@ -467,3 +467,179 @@ document.addEventListener('keydown', e => {
     hero.style.setProperty('--my', `${y}%`);
   });
 })();
+
+/* ─── ENHANCEMENT 2: DARK/LIGHT THEME TOGGLE ─────────────── */
+(function initThemeToggle() {
+  const btn = document.getElementById('themeToggle');
+  if (!btn) return;
+
+  // Persist preference
+  const saved = localStorage.getItem('nexus-theme');
+  if (saved === 'light') {
+    document.body.classList.add('light-theme');
+    btn.textContent = '☀️';
+  }
+
+  btn.addEventListener('click', () => {
+    const isLight = document.body.classList.toggle('light-theme');
+    btn.textContent = isLight ? '☀️' : '🌙';
+    localStorage.setItem('nexus-theme', isLight ? 'light' : 'dark');
+    showToast('Theme', isLight ? '☀️ Light mode activated' : '🌙 Dark mode activated');
+  });
+})();
+
+/* ─── ENHANCEMENT 3: ANIMATED SKILL / PROGRESS BARS ─────── */
+(function initSkillBars() {
+  const bars = document.querySelectorAll('.skill-bar-fill[data-width]');
+  if (!bars.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = entry.target;
+        const width  = target.dataset.width + '%';
+        // Small delay so user sees the animation
+        setTimeout(() => {
+          target.style.width = width;
+          target.classList.add('animated');
+        }, 200);
+        observer.unobserve(target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  bars.forEach(bar => observer.observe(bar));
+})();
+
+/* ─── ENHANCEMENT 4: TOAST NOTIFICATION SYSTEM ───────────── */
+function showToast(title, message, duration) {
+  const container = document.getElementById('toastContainer');
+  if (!container) return;
+
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.setAttribute('role', 'status');
+  toast.innerHTML = `
+    <span class="toast-icon" aria-hidden="true">✦</span>
+    <div class="toast-msg">
+      <strong>${title}</strong>
+      ${message}
+    </div>
+  `;
+  container.appendChild(toast);
+
+  const ms = duration || 3500;
+  setTimeout(() => {
+    toast.classList.add('fadeout');
+    toast.addEventListener('animationend', () => toast.remove(), { once: true });
+  }, ms);
+}
+
+// Show welcome toast after page loads
+window.addEventListener('load', () => {
+  setTimeout(() => showToast('Welcome', 'Exploring Nexus AI Platform', 4000), 2200);
+});
+
+// Show toast on section enter for key sections
+(function initSectionToasts() {
+  const toastMap = {
+    solutions:    { title: 'AI Solutions',   msg: 'Discover our 6 core platforms' },
+    robotics:     { title: 'Robotics',        msg: 'Physical intelligence at scale' },
+    projects:     { title: 'Projects',        msg: '4 deployed flagship systems' },
+    stats:        { title: 'Statistics',      msg: 'Real results, real impact' },
+  };
+  const shown = new Set();
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !shown.has(entry.target.id)) {
+        const info = toastMap[entry.target.id];
+        if (info) { showToast(info.title, info.msg); shown.add(entry.target.id); }
+      }
+    });
+  }, { threshold: 0.3 });
+
+  Object.keys(toastMap).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+})();
+
+/* ─── ENHANCEMENT 1 (JS part): DYNAMIC DOM MANIPULATION ──── */
+/* Adds a real-time "live" indicator to the hero that updates  */
+(function initLiveIndicator() {
+  // Inject live data chip into hero dynamically (DOM manipulation)
+  const heroContent = document.querySelector('.hero-content');
+  if (!heroContent) return;
+
+  const liveBar = document.createElement('div');
+  liveBar.className = 'live-indicator';
+  liveBar.setAttribute('aria-live', 'polite');
+  liveBar.innerHTML = `
+    <span class="live-dot" aria-hidden="true"></span>
+    <span class="live-label">LIVE:</span>
+    <span class="live-value" id="liveValue">Loading system status…</span>
+  `;
+  heroContent.insertBefore(liveBar, heroContent.querySelector('.hero-headline'));
+
+  // Simulated live status cycling
+  const statuses = [
+    '2.4B data events processed today',
+    '142 active AI deployments online',
+    '98.3% average model accuracy',
+    '6 continents — 120+ enterprise clients',
+    'System health: ALL SYSTEMS NOMINAL',
+  ];
+  let idx = 0;
+  const liveValue = document.getElementById('liveValue');
+
+  function updateStatus() {
+    if (!liveValue) return;
+    liveValue.style.opacity = '0';
+    setTimeout(() => {
+      liveValue.textContent = statuses[idx];
+      liveValue.style.opacity = '1';
+      idx = (idx + 1) % statuses.length;
+    }, 300);
+  }
+
+  // Add CSS inline (this is JS-driven DOM styling, not inline HTML attribute)
+  const style = document.createElement('style');
+  style.textContent = `
+    .live-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,229,255,0.06);
+      border: 1px solid rgba(0,229,255,0.2);
+      border-radius: 50px;
+      padding: 0.35rem 1rem;
+      font-family: var(--font-heading);
+      font-size: 0.62rem;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+    .live-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #00FFAE;
+      box-shadow: 0 0 8px #00FFAE;
+      animation: dotPulse 1.5s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    .live-label {
+      color: #00FFAE;
+      font-weight: 700;
+    }
+    .live-value {
+      color: var(--text-primary);
+      transition: opacity 0.3s ease;
+    }
+  `;
+  document.head.appendChild(style);
+
+  updateStatus();
+  setInterval(updateStatus, 3500);
+})();
+
